@@ -1,0 +1,54 @@
+THEME
+Two-button controls
+Ludum Dare 34 (11-13 Dec 2015)
+
+FEATURES
+
+TODO
+	See a box.
+	See other boxes in random lanes.
+	Press left or right to change lane.
+	Avoid crashes to accelerate.
+	Read finishing position.
+	Pass a box.
+	Schedule cars to pass in three lanes.
+	Three lanes.
+	Read instructions.
+	Saturday night, Jennifer races.
+	Experiment with two lanes.
+	Some car signals to change lanes.
+	Road moves by.
+	Sunday at lunch, Jennifer finishes three races, in 1st, and 2nd to 5th place.
+	See a voxel car.
+	Hear a sound.
+	Upload to finegamedesign.com/auto-racer
+	Submit to Ludum Dare
+
+NAME IDEA BANK
+
+	Auto Racer
+	Achtung Autobahn
+	Autobahn
+
+REFERENCE GAMES
+
+	Road Racer https://github.com/ethankennerly/race
+	Autobahn http://arcade.modemhelp.net/play-5133-Autobahn.html
+	Just Shut Up and Drive
+	Coaster Racer
+	Highway Hazards
+	Subway Surfers
+	Despicable Me
+	German Autobahn  http://race.gamesxl.com/german-autobahn.html
+	Chennai Auto Traffic Racer https://play.google.com/store/apps/details?id=com.creativemonkeygames.chennaiautotrafficracer&hl=en
+	Mario Kart
+	Crazy Auto Racer https://play.google.com/store/apps/details?id=com.games2win.drivingreckless
+	Autobahn Raser Police Madness http://www.gamefaqs.com/ps2/930474-london-racer-police-madness/images/1120373
+	Autobahn Polize! http://www.amazon.com/Autobahn-Polizei-Xbox-360/dp/B0037BSTYS
+	Autobahn Police Simulator http://store.steampowered.com/app/348510/
+
+REFERENCE ART
+
+	Tiny Auto Racer https://apkpure.com/tiny-auto-racer-tiny-town/com.toppixelgames.traffic.drivers.street.racer
+
+JOURNAL
