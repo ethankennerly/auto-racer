@@ -40,5 +40,6 @@ public class Model
 		{
 			vehicles[index].Update(deltaSeconds);
 		}
+		player.UpdateCollision(vehicles, playerIndex);
 	}
 }
