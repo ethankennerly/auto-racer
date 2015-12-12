@@ -3,7 +3,7 @@ using UnityEngine;
 public class View
 {
 	public Model model;
-	public delegate GameObject InstantiatePrefabDelegate(string prefabName, Vector3 position);
+	public delegate GameObject InstantiatePrefabDelegate(GameObject prefab, Vector3 position);
 	public InstantiatePrefabDelegate InstantiatePrefab;
 	private Transform[] transforms;
 	private Transform player;
@@ -12,6 +12,8 @@ public class View
 	public void Start()
 	{
 		player = GameObject.Find("Player").transform;
+		GameObject competitorPrefab = GameObject.Find("Competitor");
+		competitorPrefab.SetActive(false);
 		competitors = new GameObject[model.competitorCount];
 		transforms = new Transform[model.vehicleCount];
 		int competitorIndex = 0;
@@ -26,7 +28,7 @@ public class View
 			else
 			{
 				Vector3 position = new Vector3(vehicle.x, vehicle.y, vehicle.z);
-				GameObject competitor = InstantiatePrefab("Competitor", position);
+				GameObject competitor = InstantiatePrefab(competitorPrefab, position);
 				competitors[competitorIndex] = competitor;
 				competitorIndex++;
 				transform = competitor.transform;
