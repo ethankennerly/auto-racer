@@ -1,8 +1,23 @@
+using UnityEngine;  // Mathf
+using System;  // Random
+
 public class Deck
 {
-	// TODO
+	private static System.Random rng = new System.Random();
+
+	/**
+	 * Unity Random includes 1.0, which would be out of range.
+	 * Would be more usable with generic data-type.
+	 */
 	public static void Shuffle(float[] deck)
 	{
+		for (int index = deck.Length - 1; 1 <= index; index--)
+		{
+			int r = (int) Mathf.Floor((float) (rng.NextDouble() * (index + 1f)));
+			float swap = deck[index];
+			deck[index] = deck[r];
+			deck[r] = swap;
+		}
 	}
 
 	private int index = -1;
