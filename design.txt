@@ -3,10 +3,10 @@ Two-button controls
 Ludum Dare 34 (11-13 Dec 2015)
 
 FEATURES
-
-TODO
 	See a box.
 	See other boxes in random lanes.
+
+TODO
 	Press left or right to change lane.
 	Avoid crashes to accelerate.
 	Read finishing position.

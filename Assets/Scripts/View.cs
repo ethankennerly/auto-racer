@@ -55,8 +55,15 @@ public class View
 		}
 	}
 
+	private void UpdateInput(SteeringModel steering)
+	{
+		steering.isInputLeft = Input.GetKeyDown(KeyCode.LeftArrow);
+		steering.isInputRight = Input.GetKeyDown(KeyCode.RightArrow);
+	}
+
 	public void Update(float deltaSeconds)
 	{
+		UpdateInput(model.steering);
 		UpdatePositions(transforms);
 	}
 }

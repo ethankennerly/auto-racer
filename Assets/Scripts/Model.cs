@@ -8,6 +8,7 @@ public class Model
 	public int vehicleCount = 10;
 	public Vehicle[] vehicles;
 	public Race race = new Race();
+	public SteeringModel steering = new SteeringModel();
 	private int laneCount;
 	private int laneCopies = 3;
 	private float[] laneOriginals = new float[]{-1.0f, 0.0f, 1.0f};
@@ -22,7 +23,7 @@ public class Model
 		{
 			Vehicle vehicle = new Vehicle();
 			vehicle.speed = race.competitorSpeed;
-			vehicle.z = (float) index;
+			vehicle.z = race.competitorStart + (float) index;
 			vehicle.x = lanes.NextCard();
 			vehicles[index] = vehicle;
 		}
@@ -34,6 +35,7 @@ public class Model
 
 	public void Update(float deltaSeconds)
 	{
+		player.x = steering.Update(deltaSeconds);
 		for (int index = 0; index < vehicleCount; index++) 
 		{
 			vehicles[index].Update(deltaSeconds);
