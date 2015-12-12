@@ -22,14 +22,14 @@ public class Model
 		for (int index = 0; index < competitorCount; index++) 
 		{
 			Vehicle vehicle = new Vehicle();
-			vehicle.speed = race.competitorSpeed;
-			vehicle.z = race.competitorStart + (float) index;
+			vehicle.drive.Start();
+			race.SetupCompetitor(vehicle, index, competitorCount);
 			vehicle.x = lanes.NextCard();
 			vehicles[index] = vehicle;
 		}
 		playerIndex = competitorCount;
 		player = new Vehicle();
-		player.speed = race.playerSpeed;
+		player.drive.Start();
 		vehicles[competitorCount] = player;
 	}
 

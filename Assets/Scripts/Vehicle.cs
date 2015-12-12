@@ -2,11 +2,12 @@ using UnityEngine;  // Mathf
 
 public class Vehicle
 {
+	public float speed = 0.0f;
 	public float x = 0.0f;
 	public float y = 0.0f;
 	public float z = 0.0f;
 
-	public float speed = 0.0f;
+	public Drive drive = new Drive();
 	public float collisionRadius = 0.2f;
 	public float collisionSpeedMultiplier = 0.05f;
 	public bool isColliding;
@@ -50,6 +51,7 @@ public class Vehicle
 
 	public void Update(float deltaSeconds)
 	{
-		z += speed * deltaSeconds;
+		z += drive.Update(deltaSeconds);
+		speed = drive.derivatives[0];
 	}
 }

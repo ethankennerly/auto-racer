@@ -5,8 +5,17 @@ public class Race
 	public float competitorStart = 2.0f;
 	public float cameraZ;
 
-	public void Start()
+	public void SetupCompetitor(Vehicle vehicle, int index, int competitorCount)
 	{
+		float total = (float) competitorCount;
+		float advantage = total - (float) index;
+		float[] derivatives = new float[]{
+			0.0f / total * advantage, 
+			5.0f / total * advantage, 
+			5.0f / total * advantage
+		}; 
+		vehicle.z = competitorStart + advantage;
+		vehicle.drive.derivatives = derivatives;
 	}
 
 	public void Update(float deltaSeconds)
