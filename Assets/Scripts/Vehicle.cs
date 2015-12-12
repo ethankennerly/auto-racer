@@ -1,13 +1,10 @@
-using UnityEngine;
-using System.Collections;
-
 public class Vehicle
 {
 	public float x = 0.0f;
 	public float y = 0.0f;
 	public float z = 0.0f;
 
-	public float speed = 0.5f;
+	public float speed = 0.0f;
 
 	public void Start()
 	{

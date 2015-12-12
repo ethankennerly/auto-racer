@@ -15,6 +15,7 @@ TODO
 	Three lanes.
 	Read instructions.
 	Saturday night, Jennifer races.
+	Shuffle competitor lanes.
 	Experiment with two lanes.
 	Some car signals to change lanes.
 	Road moves by.
