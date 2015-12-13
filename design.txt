@@ -12,10 +12,10 @@ FEATURES
 	Schedule cars to pass in three lanes.
 	Shuffle competitor lanes.
 	8th cars oscillate a lane each 2 seconds.
-
-TODO
 	After finish, no longer cycle.
 	Cars spread out.
+
+TODO
 	Saturday night, Jennifer races.
 	At a higher level, cars oscillate.
 	Finish near 1st if make only one mistake.
@@ -33,8 +33,11 @@ TODO
 	Hear a sound.
 	Road moves by.
 	Restart.
+	Sunday at 5, Jennifer finishes three races, in 1st, and 2nd to 5th place.
+	Test case:  2015-12-12 Jennifer Russ expects sign to lift.
 	Upload to finegamedesign.com/auto-racer
 	Submit to Ludum Dare.
+	Smooth transition.
 	Find general C# or Unity ease engine like TweenLite (acceleration, steering)
 	Shuffle scenes.
 	Show speed.

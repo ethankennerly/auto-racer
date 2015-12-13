@@ -15,6 +15,7 @@ public class Model
 	private int laneCopies = 3;
 	private float[] laneOriginals = new float[]{-1.0f, 0.0f, 1.0f};
 	private Deck lanes = new Deck();
+	private bool isAccelerating = false;
 
 	private void StartIsShort(bool isShort)
 	{
@@ -56,6 +57,16 @@ public class Model
 
 	public void Update(float deltaSeconds)
 	{
+		if (!isAccelerating) {
+			if (player.steering.isInputLeft || player.steering.isInputRight)
+			{
+				isAccelerating = true;
+			}
+			else
+			{
+				deltaSeconds = 0.0f;
+			}
+		}
 		for (int index = 0; index < vehicleCount; index++) 
 		{
 			Vehicle vehicle = vehicles[index];
@@ -71,7 +82,7 @@ public class Model
 					}
 				}
 				vehicle.stopZ = race.CalculateStop(vehicle.index);
-				Debug.Log("stopZ " + vehicle.stopZ);
+				// Debug.Log("stopZ " + vehicle.stopZ);
 			}
 			vehicle.Update(deltaSeconds);
 		}

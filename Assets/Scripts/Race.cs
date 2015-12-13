@@ -7,7 +7,9 @@ public class Race
 	public float finishZ = 260.0f;
 	public float cameraZ;
 	public float postZ = 15.0f;
-	public float carPerCycleLane = 8.0f;
+	public float carPerCycleLane = 	// 2.0f; 
+					// 4.0f; 
+					8.0f;
 
 	public void SetupCompetitor(Vehicle vehicle, int index, int competitorCount)
 	{
@@ -33,9 +35,5 @@ public class Race
 	{
 		return finishZ + postZ 
 			- (0.5f + (float) index);
-	}
-
-	public void Update(float deltaSeconds)
-	{
 	}
 }
