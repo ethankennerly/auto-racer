@@ -8,6 +8,7 @@ public class Vehicle
 	public float z = 0.0f;
 	public float finishZ = 0.0f;
 	public float stopZ = 0.0f;
+	public bool isFinished = false;
 	public int index;
 
 	public Drive drive = new Drive();
@@ -17,10 +18,6 @@ public class Vehicle
 	public bool isColliding;
 	public bool isCollidingNow;
 	private bool wasColliding;
-
-	public void Start()
-	{
-	}
 
 	public bool IsUpdateRank(Vehicle[] vehicles)
 	{
@@ -94,15 +91,26 @@ public class Vehicle
 		return isCollidingNow;
 	}
 
-	public void ComeToStop()
+	public bool IsFinishingNow()
 	{
-		drive.derivatives[2] = stopZ - z;
-		drive.rates = drive.ratesFinish;
+		bool isNow = !isFinished;
+		if (isNow)
+		{
+			Debug.Log("IsFinishingNow");
+			isFinished = true;
+			drive.rates = drive.ratesFinish;
+			steering.isCycleLane = false;
+		}
+		return isNow;
 	}
 
 	public void Update(float deltaSeconds)
 	{
 		x = steering.Update(deltaSeconds);
+		if (isFinished)
+		{
+			drive.derivatives[2] = stopZ - z;
+		}
 		z += drive.Update(deltaSeconds);
 		speed = drive.derivatives[0];
 	}

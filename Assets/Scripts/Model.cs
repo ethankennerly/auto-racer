@@ -59,14 +59,23 @@ public class Model
 		for (int index = 0; index < vehicleCount; index++) 
 		{
 			Vehicle vehicle = vehicles[index];
-			if (race.finishZ <= vehicle.z)
+			if (race.finishZ <= vehicle.z &&
+				vehicle.IsFinishingNow())
 			{
-				vehicle.ComeToStop();
+				if (player != vehicle)
+				{
+					vehicle.index = System.Array.IndexOf(ranks, vehicle);
+					if (player.index <= vehicle.index)
+					{
+						//? vehicle.index++;
+					}
+				}
+				vehicle.stopZ = race.CalculateStop(vehicle.index);
+				Debug.Log("stopZ " + vehicle.stopZ);
 			}
 			vehicle.Update(deltaSeconds);
 		}
 		if (player.IsUpdateRank(ranks)) {
-			player.stopZ = race.CalculateStop(player.index);
 		}
 		player.UpdateCollision(ranks);
 		cameraZ = player.z + cameraZStart;

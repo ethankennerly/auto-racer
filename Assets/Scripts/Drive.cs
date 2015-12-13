@@ -8,8 +8,8 @@ public class Drive
 
 	public void Start()
 	{
-		derivatives = derivativesStart;
-		rates = ratesStart;
+		derivatives = (float[]) derivativesStart.Clone();
+		rates = (float[]) ratesStart.Clone();
 	}
 
 	public float Update(float deltaSeconds)

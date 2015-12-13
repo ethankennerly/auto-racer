@@ -7,14 +7,13 @@ public class Deck
 
 	/**
 	 * Unity Random includes 1.0, which would be out of range.
-	 * Would be more usable with generic data-type.
 	 */
-	public static void Shuffle(float[] deck)
+	public static void Shuffle<T>(T[] deck)
 	{
 		for (int index = deck.Length - 1; 1 <= index; index--)
 		{
-			int r = (int) Mathf.Floor((float) (rng.NextDouble() * (index + 1f)));
-			float swap = deck[index];
+			int r = (int) Mathf.Floor((float) (rng.NextDouble() * (index + 1)));
+			T swap = deck[index];
 			deck[index] = deck[r];
 			deck[r] = swap;
 		}
