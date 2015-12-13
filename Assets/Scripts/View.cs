@@ -30,7 +30,7 @@ public class View
 		{
 			Transform transform;
 			Vehicle vehicle = model.vehicles[index];
-			if (index == model.playerIndex)
+			if (index == model.player.index)
 			{
 				transform = player;
 			}

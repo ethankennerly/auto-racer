@@ -8,10 +8,11 @@ public class Vehicle
 	public float z = 0.0f;
 	public float finishZ = 0.0f;
 	public float stopZ = 0.0f;
+	public int index;
 
 	public Drive drive = new Drive();
 	public float collisionRadius = 0.2f;
-	public float collisionSpeedMultiplier = 0.05f;
+	public float collisionSpeedMultiplier = 0.0f;
 	public bool isColliding;
 	public bool isCollidingNow;
 	private bool wasColliding;
@@ -20,41 +21,82 @@ public class Vehicle
 	{
 	}
 
+	public bool IsUpdateRank(Vehicle[] vehicles)
+	{
+		Vehicle other;
+		int place;
+		int next = index;
+		if (1 <= index)
+		{
+			place = index - 1;
+			other = vehicles[place];
+			if (other.z < z)
+			{
+				next = place;
+				vehicles[next] = this;
+				vehicles[index] = other;
+			}
+		}
+		if (next == index && index < vehicles.Length - 1)
+		{
+			place = index + 1;
+			other = vehicles[place];
+			if (z < other.z)
+			{
+				next = place;
+				vehicles[next] = this;
+				vehicles[index] = other;
+			}
+		}
+		bool isChanging = index != next;
+		index = next;
+		return isChanging;
+	}
+
 	public bool IsColliding(Vehicle other)
 	{
 		float intersect = collisionRadius + other.collisionRadius;
 		isColliding = (other.speed < speed) &&
 			(Mathf.Abs(z - other.z) < intersect
-			|| Mathf.Abs(x - other.x) < intersect);
+			&& Mathf.Abs(x - other.x) < intersect);
 		return isColliding;
+	}
+
+	public bool UpdateCollision(Vehicle[] vehicles)
+	{
+		wasColliding = isColliding;
+		isColliding = false;
+		int ahead = index - 1;
+		int behind = index + 1;
+		int collisionIndex = -1;
+		if (!isColliding && 0 <= ahead)
+		{
+			isColliding = IsColliding(vehicles[ahead]);
+			if (isColliding) {
+				collisionIndex = ahead;
+			}
+		}
+		if (!isColliding && behind < vehicles.Length)
+		{
+			isColliding = IsColliding(vehicles[behind]);
+			if (isColliding) {
+				collisionIndex = behind;
+			}
+		}
+		isCollidingNow = !wasColliding && isColliding;
+		if (isCollidingNow)
+		{
+			speed *= collisionSpeedMultiplier;
+			drive.derivatives[0] = speed;
+			Debug.Log("Vehicle.UpdateCollision: Collided.  New speed " + speed + ". Collision index " + collisionIndex);
+		}
+		return isCollidingNow;
 	}
 
 	public void ComeToStop()
 	{
 		drive.derivatives[2] = stopZ - z;
 		drive.rates = drive.ratesFinish;
-	}
-
-	public bool UpdateCollision(Vehicle[] vehicles, int index)
-	{
-		wasColliding = isColliding;
-		int ahead = index - 1;
-		int behind = index + 1;
-		if (0 <= ahead)
-		{
-			isColliding = IsColliding(vehicles[ahead]);
-		}
-		if (!isCollidingNow && behind < vehicles.Length)
-		{
-			isColliding = IsColliding(vehicles[behind]);
-		}
-		isCollidingNow = !wasColliding && isColliding;
-		if (isCollidingNow)
-		{
-			speed *= collisionSpeedMultiplier;
-			// Debug.Log("Vehicle.UpdateCollision: speed " + speed);
-		}
-		return isCollidingNow;
 	}
 
 	public void Update(float deltaSeconds)

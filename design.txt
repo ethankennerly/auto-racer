@@ -9,24 +9,22 @@ FEATURES
 	Avoid crashes to accelerate.
 	Camera follows player.
 	Placehold finish.
+	Schedule cars to pass in three lanes.
 
 TODO
-	Finish.
-	Read finishing position.
 	50 vehicles.
-	Schedule cars to pass in three lanes.
-	Three lanes.
+	Finish in place.  Read finishing position.
+	See three lanes.
 	Read instructions.
 	Saturday night, Jennifer races.
 	Shuffle competitor lanes.
 	Experiment with two lanes.
 	Some car signals to change lanes.
-	Road moves by.
 	Sunday at lunch, Jennifer finishes three races, in 1st, and 2nd to 5th place.
 	Fog fades in road and cars.
 	See a voxel car.
 	Hear a sound.
-	See a road.
+	Road moves by.
 	Upload to finegamedesign.com/auto-racer
 	Submit to Ludum Dare.
 	Find general C# or Unity ease engine like TweenLite (acceleration, steering)

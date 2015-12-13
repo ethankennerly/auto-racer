@@ -4,12 +4,12 @@ public class Model
 {
 	public bool isShort;
 	public int competitorCount;
-	public int playerIndex;
 	public Vehicle player;
 	public float cameraZ;
 	public float cameraZStart;
 	public int vehicleCount = 10;
 	public Vehicle[] vehicles;
+	public Vehicle[] ranks;
 	public Race race = new Race();
 	public SteeringModel steering = new SteeringModel();
 	private int laneCount;
@@ -39,6 +39,7 @@ public class Model
 		StartIsShort(isShort);
 		lanes.Setup(laneOriginals, laneCopies); 
 		vehicles = new Vehicle[vehicleCount];
+		ranks = new Vehicle[vehicleCount];
 		competitorCount = vehicleCount - 1;
 		for (int index = 0; index < competitorCount; index++) 
 		{
@@ -47,9 +48,10 @@ public class Model
 			race.SetupCompetitor(vehicle, index, competitorCount);
 			vehicle.x = lanes.NextCard();
 			vehicles[index] = vehicle;
+			ranks[index] = vehicle;
 		}
-		playerIndex = competitorCount;
-		player.stopZ = race.CalculateStop(playerIndex);
+		player.index = competitorCount;
+		player.stopZ = race.CalculateStop(player.index);
 		vehicles[competitorCount] = player;
 	}
 
@@ -65,7 +67,10 @@ public class Model
 			}
 			vehicle.Update(deltaSeconds);
 		}
-		player.UpdateCollision(vehicles, playerIndex);
+		if (player.IsUpdateRank(ranks)) {
+			player.stopZ = race.CalculateStop(player.index);
+		}
+		player.UpdateCollision(ranks);
 		cameraZ = player.z + cameraZStart;
 	}
 }

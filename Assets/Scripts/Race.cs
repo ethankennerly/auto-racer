@@ -10,7 +10,6 @@ public class Race
 	public void SetupCompetitor(Vehicle vehicle, int index, int competitorCount)
 	{
 		float total = (float) competitorCount;
-		float degree = (float) index;
 		float advantage = total - (float) index;
 		float[] derivatives = new float[]{
 			0.0f / total * advantage, 
@@ -20,12 +19,13 @@ public class Race
 		vehicle.z = competitorStart + advantage;
 		vehicle.stopZ = CalculateStop(index);
 		vehicle.drive.derivatives = derivatives;
+		vehicle.index = index;
 	}
 
 	public float CalculateStop(int index)
 	{
 		return finishZ + postZ 
-			- 0.5f * (0.5f + (float) index);
+			- (0.5f + (float) index);
 	}
 
 	public void Update(float deltaSeconds)
