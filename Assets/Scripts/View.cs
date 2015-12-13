@@ -72,8 +72,8 @@ public class View
 
 	public void Update(float deltaSeconds)
 	{
-		UpdateInput(model.steering);
+		UpdateInput(model.player.steering);
 		UpdatePositions(transforms);
-		SetPosition(camera, model.steering.cameraX, model.cameraZ);
+		SetPosition(camera, model.player.steering.cameraX, model.cameraZ);
 	}
 }

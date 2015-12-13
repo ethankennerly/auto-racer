@@ -21,11 +21,26 @@ public class SteeringModel
 	private float xDifference = 0.0f;
 	private float tolerance = 0.001f;
 
+	public bool isCycleLane = false;
+	public float cycleDirection = 1.0f;
+	private float cycleDelay = 0.5f;
+	private float cycleWaited = 0.0f;
+
+	public void Start(float lane) 
+	{
+		x = lane;
+		laneTarget = lane;
+	}
+
 	/**
 	 * If was input left or right then ignore input this frame.  Perhaps multiple updates are being called per frame, since it is a fixed update.  Test case:  2015-10-31 In left lane.  Press right.  Expect move one lane.  Sometimes move two lanes.
 	 */
 	public float Update(float deltaTime) 
 	{
+		if (isCycleLane)
+		{
+			CycleLane(deltaTime);
+		}
 		if (isInputLeft && isInputRight) 
 		{
 		}
@@ -58,5 +73,24 @@ public class SteeringModel
 		wasInputLeft = isInputLeft;
 		wasInputRight = isInputRight;
 		return x;
+	}
+	
+	public void CycleLane(float deltaSeconds)
+	{
+		if (!isChanging)
+		{
+			cycleWaited += deltaSeconds;
+			if (cycleDelay <= cycleWaited)
+			{
+				cycleWaited -= cycleDelay;
+				laneTarget += cycleDirection;
+				isChanging = true;
+				if (laneTarget < laneLeft || laneRight < laneTarget)
+				{
+					cycleDirection = -cycleDirection;
+					laneTarget += 2.0f * cycleDirection;
+				}
+			}
+		}
 	}
 }

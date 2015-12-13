@@ -10,14 +10,17 @@ FEATURES
 	Camera follows player.
 	Placehold finish.
 	Schedule cars to pass in three lanes.
+	Shuffle competitor lanes.
+	8th cars oscillate a lane each 2 seconds.
 
 TODO
 	50 vehicles.
+	Finish near 1st if make only one mistake.
 	Finish in place.  Read finishing position.
 	See three lanes.
+	Press left or right to start.
 	Read instructions.
 	Saturday night, Jennifer races.
-	Shuffle competitor lanes.
 	Experiment with two lanes.
 	Some car signals to change lanes.
 	Sunday at lunch, Jennifer finishes three races, in 1st, and 2nd to 5th place.
@@ -29,6 +32,9 @@ TODO
 	Submit to Ludum Dare.
 	Find general C# or Unity ease engine like TweenLite (acceleration, steering)
 	Show speed.
+	Pass rise in pitch with speed.
+	Pass musical note.
+	Crash musical note.
 
 NAME IDEA BANK
 

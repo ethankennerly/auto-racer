@@ -6,6 +6,7 @@ public class Race
 	public float finishZ = 260.0f;
 	public float cameraZ;
 	public float postZ = 15.0f;
+	public float carPerCycleLane = 8.0f;
 
 	public void SetupCompetitor(Vehicle vehicle, int index, int competitorCount)
 	{
@@ -20,6 +21,11 @@ public class Race
 		vehicle.stopZ = CalculateStop(index);
 		vehicle.drive.derivatives = derivatives;
 		vehicle.index = index;
+		
+		if (index % carPerCycleLane == 0)
+		{
+			vehicle.steering.isCycleLane = true;
+		}
 	}
 
 	public float CalculateStop(int index)

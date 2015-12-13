@@ -11,6 +11,7 @@ public class Vehicle
 	public int index;
 
 	public Drive drive = new Drive();
+	public SteeringModel steering = new SteeringModel();
 	public float collisionRadius = 0.2f;
 	public float collisionSpeedMultiplier = 0.0f;
 	public bool isColliding;
@@ -101,6 +102,7 @@ public class Vehicle
 
 	public void Update(float deltaSeconds)
 	{
+		x = steering.Update(deltaSeconds);
 		z += drive.Update(deltaSeconds);
 		speed = drive.derivatives[0];
 	}
