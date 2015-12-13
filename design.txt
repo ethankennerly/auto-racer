@@ -8,9 +8,9 @@ FEATURES
 	Press left or right to change lane.
 	Avoid crashes to accelerate.
 	Camera follows player.
+	Placehold finish.
 
 TODO
-	See finish.
 	Finish.
 	Read finishing position.
 	50 vehicles.

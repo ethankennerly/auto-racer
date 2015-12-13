@@ -49,6 +49,7 @@ public class Model
 			vehicles[index] = vehicle;
 		}
 		playerIndex = competitorCount;
+		player.stopZ = race.CalculateStop(playerIndex);
 		vehicles[competitorCount] = player;
 	}
 
@@ -57,7 +58,12 @@ public class Model
 		player.x = steering.Update(deltaSeconds);
 		for (int index = 0; index < vehicleCount; index++) 
 		{
-			vehicles[index].Update(deltaSeconds);
+			Vehicle vehicle = vehicles[index];
+			if (race.finishZ <= vehicle.z)
+			{
+				vehicle.ComeToStop();
+			}
+			vehicle.Update(deltaSeconds);
 		}
 		player.UpdateCollision(vehicles, playerIndex);
 		cameraZ = player.z + cameraZStart;

@@ -6,6 +6,8 @@ public class Vehicle
 	public float x = 0.0f;
 	public float y = 0.0f;
 	public float z = 0.0f;
+	public float finishZ = 0.0f;
+	public float stopZ = 0.0f;
 
 	public Drive drive = new Drive();
 	public float collisionRadius = 0.2f;
@@ -25,6 +27,12 @@ public class Vehicle
 			(Mathf.Abs(z - other.z) < intersect
 			|| Mathf.Abs(x - other.x) < intersect);
 		return isColliding;
+	}
+
+	public void ComeToStop()
+	{
+		drive.derivatives[2] = stopZ - z;
+		drive.rates = drive.ratesFinish;
 	}
 
 	public bool UpdateCollision(Vehicle[] vehicles, int index)
