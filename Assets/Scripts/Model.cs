@@ -75,11 +75,18 @@ public class Model
 				deltaSeconds = 0.0f;
 			}
 		}
-		else if (isInput && player.HasStopped() && state != "Ready")
+		else if (player.HasStopped())
 		{
-			state = "Ready";
-			isRestartNow = !isRestart;
-			isRestart = true;
+			if (isInput && state != "Ready")
+			{
+				state = "Ready";
+				isRestartNow = !isRestart;
+				isRestart = true;
+			}
+			else
+			{
+				state = "RestartPrompt";
+			}
 		}
 		for (int index = 0; index < vehicleCount; index++) 
 		{
