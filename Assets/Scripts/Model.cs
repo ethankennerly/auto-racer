@@ -3,6 +3,8 @@ using UnityEngine;
 public class Model
 {
 	public bool isShort;
+	public bool isRestart;
+	public bool isRestartNow;
 	public int competitorCount;
 	public Vehicle player;
 	public float cameraZ;
@@ -35,6 +37,7 @@ public class Model
 
 	public void Start()
 	{
+		isRestart = false;
 		player = new Vehicle();
 		player.drive.Start();
 		StartIsShort(isShort);
@@ -58,8 +61,11 @@ public class Model
 
 	public void Update(float deltaSeconds)
 	{
-		if (!isAccelerating) {
-			if (player.steering.isInputLeft || player.steering.isInputRight)
+		isRestartNow = false;
+		bool isInput = player.steering.isInputLeft || player.steering.isInputRight;
+		if (!isAccelerating)
+		{
+			if (isInput)
 			{
 				isAccelerating = true;
 				state = "Start";
@@ -68,6 +74,12 @@ public class Model
 			{
 				deltaSeconds = 0.0f;
 			}
+		}
+		else if (isInput && player.HasStopped() && state != "Ready")
+		{
+			state = "Ready";
+			isRestartNow = !isRestart;
+			isRestart = true;
 		}
 		for (int index = 0; index < vehicleCount; index++) 
 		{

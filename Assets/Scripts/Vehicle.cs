@@ -104,6 +104,11 @@ public class Vehicle
 		return isNow;
 	}
 
+	public bool HasStopped()
+	{
+		return steering.isFinished && speed < 0.25f;
+	}
+
 	public void Update(float deltaSeconds)
 	{
 		x = steering.Update(deltaSeconds);

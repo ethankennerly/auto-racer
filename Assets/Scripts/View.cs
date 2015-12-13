@@ -70,5 +70,9 @@ public class View
 		UpdateInput(model.player.steering);
 		UpdatePositions(transforms);
 		ToyView.SetPositionXZ(camera, model.player.steering.cameraX, model.cameraZ);
+		if (model.isRestartNow)
+		{
+			Application.LoadLevel(Application.loadedLevel);
+		}
 	}
 }
