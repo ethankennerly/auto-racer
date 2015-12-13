@@ -4,13 +4,13 @@ public class View
 {
 	public Model model;
 	public GameObject main;
+	public GameObject[] competitors;
 	public delegate GameObject InstantiatePrefabDelegate(GameObject prefab, Vector3 position);
 	public InstantiatePrefabDelegate InstantiatePrefab;
 	private Transform[] transforms;
 	private Transform player;
 	private Transform camera;
 	private Transform finish;
-	private GameObject[] competitors;
 	private GameObject competitorPrefab;
 
 	public void Start()
@@ -25,10 +25,11 @@ public class View
 			competitorPrefab = GameObject.Find("Competitor");
 			competitorPrefab.SetActive(false);
 		}
-		competitors = new GameObject[model.competitorCount];
-		transforms = new Transform[model.vehicleCount];
+		competitors = new GameObject[model.race.competitorCount];
+		int vehicleCount = model.race.vehicleCount;
+		transforms = new Transform[vehicleCount];
 		int competitorIndex = 0;
-		for (int index = 0; index < model.vehicles.Length; index++)
+		for (int index = 0; index < vehicleCount; index++)
 		{
 			Transform transform;
 			Vehicle vehicle = model.vehicles[index];

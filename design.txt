@@ -17,16 +17,18 @@ FEATURES
 	Random cars oscillate.
 	Start, animate instructions off-screen.
 		Test case:  2015-12-12 Jennifer Russ expects sign to lift.  Got pass through.
+	Read:  Auto Racer / Press LEFT or RIGHT to start.
+	Finish:  Read:  Press LEFT or RIGHT for next race.
 
 TODO
 	Sunday morning, Jennifer races.
-	Read:  Auto Racer / Press LEFT or RIGHT to start.
-	Finish:  Read:  Press LEFT or RIGHT for next race.
-	Finish near 1st if make only one mistake.
 	Higher level faster cars.
 	Higher level more cars that oscillate.
 	Higher level some car becomes an oscillator.
-	Finish in place.  Read finishing position.
+	If finish first, increase level.
+	Finish in place.  Read finishing position.  
+	If finish first read advance to next race.
+	Finish near 1st if make only one mistake.
 	Experiment with two lanes.
 	See three lanes.
 	Some car signals to change lanes.

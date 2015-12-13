@@ -16,6 +16,14 @@ public class Controller
 	{
 		model.Update(deltaSeconds);
 		ToyView.setState(view.main, model.state);
+		for (int c = 0; c < model.race.competitorCount; c++)
+		{
+			if (null != view.competitors[c])
+			{
+				ToyView.setState(view.competitors[c], 
+					model.competitors[c].steering.state);
+			}
+		}
 		view.Update(deltaSeconds);
 	}
 }

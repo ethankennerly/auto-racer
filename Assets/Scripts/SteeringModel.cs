@@ -16,6 +16,7 @@ public class SteeringModel
 	private bool wasInputRight = false;
 	public float speed = 5.0f;
 	public float x = 0.0f;
+	public string state = "None";
 
 	private float laneTarget = 0.0f;
 	private float xDifference = 0.0f;
@@ -24,7 +25,8 @@ public class SteeringModel
 	public bool isFinished = false;
 	public bool isCycleLane = false;
 	public float cycleDirection = 1.0f;
-	private float cycleDelay = 0.5f;
+	private float cycleDelay = 2.0f;
+	private float cycleSignal = 1.0f;
 	private float cycleWaited = 0.0f;
 
 	public void Start(float lane) 
@@ -38,7 +40,7 @@ public class SteeringModel
 	 */
 	public float Update(float deltaTime) 
 	{
-		if (!isFinished && isCycleLane)
+		if (!isFinished && isCycleLane && 0.0f < deltaTime)
 		{
 			CycleLane(deltaTime);
 		}
@@ -68,6 +70,7 @@ public class SteeringModel
 			{
 				x = laneTarget;
 				isChanging = false;
+				state = "None";
 			}
 		}
 		cameraX = x * cameraXMultiplier;
@@ -76,6 +79,15 @@ public class SteeringModel
 		return x;
 	}
 	
+	private void mayFlipCycleDirection()
+	{
+		if ((laneTarget <= laneLeft && cycleDirection < 0.0f)
+		|| (laneRight <= laneTarget && 0.0f < cycleDirection))
+		{
+			cycleDirection = -cycleDirection;
+		}
+	}
+
 	public void StartCycleLane()
 	{
 		isCycleLane = true;
@@ -83,7 +95,8 @@ public class SteeringModel
 		{
 			cycleDirection = -cycleDirection;
 		}
-		cycleWaited = cycleDelay - 0.5f;
+		mayFlipCycleDirection();
+		cycleWaited = cycleDelay - cycleSignal;
 	}
 
 	public void CycleLane(float deltaSeconds)
@@ -96,11 +109,16 @@ public class SteeringModel
 				cycleWaited -= cycleDelay;
 				laneTarget += cycleDirection;
 				isChanging = true;
-				if (laneTarget < laneLeft || laneRight < laneTarget)
-				{
-					cycleDirection = -cycleDirection;
-					laneTarget += 2.0f * cycleDirection;
-				}
+				state = "None";
+				mayFlipCycleDirection();
+			}
+			else if (cycleDelay - cycleSignal <= cycleWaited)
+			{
+				state = cycleDirection < 0.0 ? "SignalLeft" : "SignalRight";
+			}
+			else
+			{
+				state = "None";
 			}
 		}
 	}

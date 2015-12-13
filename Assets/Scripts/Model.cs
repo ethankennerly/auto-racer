@@ -5,13 +5,12 @@ public class Model
 	public bool isShort;
 	public bool isRestart;
 	public bool isRestartNow;
-	public int competitorCount;
 	public Vehicle player;
 	public float cameraZ;
 	public float cameraZStart;
-	public int vehicleCount = 10;
 	public Vehicle[] vehicles;
 	public Vehicle[] ranks;
+	public Vehicle[] competitors;
 	public Race race = new Race();
 	private int laneCount;
 	private int laneCopies = 3;
@@ -25,13 +24,12 @@ public class Model
 		if (isShort)
 		{
 			race.finishZ = 20.0f;
-			vehicleCount = 10;
-			player.drive.rates[0] = 2.5f;
+			race.vehicleCount = 10;
+			player.drive.rates[0] = 3.0f;
 		}
 		else
 		{
 			race.finishZ = 260.0f;
-			vehicleCount = 50;
 		}
 	}
 
@@ -40,23 +38,26 @@ public class Model
 		isRestart = false;
 		player = new Vehicle();
 		player.drive.Start();
+		race.Start(player);
 		StartIsShort(isShort);
 		lanes.Setup(laneOriginals, laneCopies); 
-		vehicles = new Vehicle[vehicleCount];
-		ranks = new Vehicle[vehicleCount];
-		competitorCount = vehicleCount - 1;
-		for (int index = 0; index < competitorCount; index++) 
+		vehicles = new Vehicle[race.vehicleCount];
+		ranks = new Vehicle[race.vehicleCount];
+		competitors = new Vehicle[race.competitorCount];
+		for (int index = 0; index < race.competitorCount; index++) 
 		{
 			Vehicle vehicle = new Vehicle();
 			vehicle.drive.Start();
-			race.SetupCompetitor(vehicle, index, competitorCount);
+			race.SetupCompetitor(vehicle, index, race.competitorCount);
 			vehicle.steering.Start(lanes.NextCard());
 			vehicles[index] = vehicle;
 			ranks[index] = vehicle;
+			competitors[index] = vehicle;
 		}
-		player.index = competitorCount;
+		player.index = race.competitorCount;
 		player.stopZ = race.CalculateStop(player.index);
-		vehicles[competitorCount] = player;
+		vehicles[race.competitorCount] = player;
+		ranks[race.competitorCount] = player;
 	}
 
 	public void Update(float deltaSeconds)
@@ -88,7 +89,7 @@ public class Model
 				state = "RestartPrompt";
 			}
 		}
-		for (int index = 0; index < vehicleCount; index++) 
+		for (int index = 0; index < race.vehicleCount; index++) 
 		{
 			Vehicle vehicle = vehicles[index];
 			if (race.finishZ <= vehicle.z &&
