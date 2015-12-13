@@ -32,6 +32,7 @@ public class Model
 	}
 
 	public bool isShort;
+	public bool isFinish;
 	public bool isRestart;
 	public bool isRestartNow;
 	public Vehicle player;
@@ -47,6 +48,7 @@ public class Model
 	private Deck lanes = new Deck();
 	private bool isAccelerating = false;
 	public string state = "Ready";
+	public string stateNow = null;
 	public string finishText = " ";
 
 	public void Start()
@@ -75,16 +77,28 @@ public class Model
 		ranks[race.competitorCount] = player;
 	}
 
+	private bool SetState(string nextState)
+	{
+		bool isNow = nextState != state;
+		if (isNow)
+		{
+			state = nextState;
+			stateNow = nextState;
+		}
+		return isNow;
+	}
+
 	public void Update(float deltaSeconds)
 	{
 		isRestartNow = false;
+		stateNow = null;
 		bool isInput = player.steering.isInputLeft || player.steering.isInputRight;
 		if (!isAccelerating)
 		{
 			if (isInput)
 			{
 				isAccelerating = true;
-				state = "Start";
+				SetState("Start");
 			}
 			else
 			{
@@ -93,15 +107,14 @@ public class Model
 		}
 		else if (player.HasStopped())
 		{
-			if (isInput && state != "Ready")
+			if (isInput && SetState("Ready"))
 			{
-				state = "Ready";
 				isRestartNow = !isRestart;
 				isRestart = true;
 			}
 			else
 			{
-				state = "RestartPrompt";
+				SetState("RestartPrompt");
 			}
 		}
 		for (int index = 0; index < race.vehicleCount; index++) 

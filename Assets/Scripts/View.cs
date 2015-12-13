@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Analytics;
+using System.Collections.Generic;
 
 public class View
 {
@@ -68,6 +70,26 @@ public class View
 		steering.isInputRight = Input.GetKeyDown(KeyCode.RightArrow);
 	}
 
+	private void UpdateAnalytics()
+	{
+		if (null != model.stateNow)
+		{
+			string levelCategory = "Level " + Race.level;
+			int collisionCount = model.player.collisionCount;
+			Dictionary<string, object> eventData = new Dictionary<string, object> {
+				{ "levelCategory", levelCategory },
+				{ "levelIndex", Race.level},
+				{ "rank", model.player.index + 1},
+				{ "collisionCount", collisionCount}
+			};
+			Analytics.CustomEvent(model.stateNow,
+				eventData);
+			Debug.Log("View.UpdateAnalytics: " + model.stateNow 
+				+ " " + levelCategory 
+				+ " collisionCount " + collisionCount);
+		}
+	}
+
 	public void Update(float deltaSeconds)
 	{
 		UpdateInput(model.player.steering);
@@ -77,5 +99,6 @@ public class View
 		{
 			Application.LoadLevel(Application.loadedLevel);
 		}
+		UpdateAnalytics();
 	}
 }

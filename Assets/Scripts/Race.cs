@@ -17,32 +17,23 @@ public class Race
 	public float carPerCycleLane = 	// 2.0f; 
 					// 4.0f; 
 					8.0f;
+	public int randomPerCycleLane = -1;
 	public int levelCount;
 
 	private int[] vehicleCounts = {
-		50,
-		60,
-		70,
-		80,
-		90,
-		100,
-		110,
-		120,
-		130,
-		140
+		50, 60, 70, 80, 90, 100, 110, 120, 130, 140
 	};
 
 	private float[] topSpeeds = {
-		80.0f,
-		90.0f,
-		100.0f,
-		110.0f,
-		120.0f,
-		130.0f,
-		140.0f,
-		150.0f,
-		160.0f,
-		170.0f
+		80.0f, 90.0f, 100.0f, 110.0f, 120.0f, 130.0f, 140.0f, 150.0f, 160.0f, 170.0f
+	};
+
+	private int[] carPerCycleLanes = {
+		-1, -1, 20, 12, 11, 10, 9, 8, 7, 6
+	};
+
+	private int[] randomPerCycleLanes = {
+		-1, -1, -1, -1, 100, 80, 60, 40, 30, 20
 	};
 
 	private void StartIsShort(Vehicle player, bool isShort)
@@ -64,6 +55,8 @@ public class Race
 		levelCount = topSpeeds.Length;
 		vehicleCount = vehicleCounts[level];
 		player.drive.derivatives[2] = topSpeeds[level];
+		carPerCycleLane = carPerCycleLanes[level];
+		randomPerCycleLane = randomPerCycleLanes[level];
 		StartIsShort(player, isShort);
 		competitorCount = vehicleCount - 1;
 	}
@@ -82,7 +75,7 @@ public class Race
 		vehicle.drive.derivatives = derivatives;
 		vehicle.index = index;
 		
-		if (index % carPerCycleLane == 0)
+		if (1 <= carPerCycleLane && index % carPerCycleLane == 0)
 		{
 			vehicle.steering.StartCycleLane();
 		}
@@ -90,10 +83,13 @@ public class Race
 
 	public void CycleLaneAhead(Vehicle[] vehicles, Vehicle player)
 	{
+		if (randomPerCycleLane <= 0) {
+			return;
+		}
 		int index = player.index;
 		int ahead = index 
 			- (int) (carPerCycleLane 
-			- (Random.value * 50))
+			- (Random.value * randomPerCycleLane))
 			- 2;
 		if (0 <= ahead && ahead < vehicles.Length && index != ahead)
 		{

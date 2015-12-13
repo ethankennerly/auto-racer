@@ -16,6 +16,7 @@ public class Vehicle
 	public float collisionSpeedMultiplier = 0.05f;
 						// 0.0f;
 	public bool isColliding;
+	public int collisionCount = 0;
 	public bool isCollidingNow;
 	private bool wasColliding;
 
@@ -86,6 +87,7 @@ public class Vehicle
 		{
 			speed *= collisionSpeedMultiplier;
 			drive.derivatives[0] = speed;
+			collisionCount++;
 			Debug.Log("Vehicle.UpdateCollision: Collided.  New speed " + speed + ". Collision index " + collisionIndex);
 		}
 		return isCollidingNow;
