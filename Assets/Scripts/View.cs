@@ -7,13 +7,19 @@ public class View
 	public InstantiatePrefabDelegate InstantiatePrefab;
 	private Transform[] transforms;
 	private Transform player;
+	private Transform camera;
 	private GameObject[] competitors;
+	private GameObject competitorPrefab;
 
 	public void Start()
 	{
-		player = GameObject.Find("Player").transform;
-		GameObject competitorPrefab = GameObject.Find("Competitor");
-		competitorPrefab.SetActive(false);
+		if (null == player) {
+			player = GameObject.Find("Player").transform;
+			camera = GameObject.Find("Camera").transform;
+			model.cameraZStart = camera.position.z;
+			competitorPrefab = GameObject.Find("Competitor");
+			competitorPrefab.SetActive(false);
+		}
 		competitors = new GameObject[model.competitorCount];
 		transforms = new Transform[model.vehicleCount];
 		int competitorIndex = 0;
@@ -65,5 +71,6 @@ public class View
 	{
 		UpdateInput(model.steering);
 		UpdatePositions(transforms);
+		SetPosition(camera, model.steering.cameraX, model.cameraZ);
 	}
 }

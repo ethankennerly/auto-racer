@@ -5,6 +5,8 @@ public class Model
 	public int competitorCount;
 	public int playerIndex;
 	public Vehicle player;
+	public float cameraZ;
+	public float cameraZStart;
 	public int vehicleCount = 10;
 	public Vehicle[] vehicles;
 	public Race race = new Race();
@@ -41,5 +43,6 @@ public class Model
 			vehicles[index].Update(deltaSeconds);
 		}
 		player.UpdateCollision(vehicles, playerIndex);
+		cameraZ = player.z + cameraZStart;
 	}
 }

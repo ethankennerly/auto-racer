@@ -6,9 +6,10 @@ FEATURES
 	See a box.
 	See other boxes in random lanes.
 	Press left or right to change lane.
+	Avoid crashes to accelerate.
 
 TODO
-	Avoid crashes to accelerate.
+	Camera follows player.
 	Read finishing position.
 	Pass a box.
 	Schedule cars to pass in three lanes.
@@ -24,6 +25,7 @@ TODO
 	Hear a sound.
 	Upload to finegamedesign.com/auto-racer
 	Submit to Ludum Dare
+	Find general C# or Unity ease engine like TweenLite (acceleration, steering)
 
 NAME IDEA BANK
 
