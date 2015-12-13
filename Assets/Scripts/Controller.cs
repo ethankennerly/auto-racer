@@ -2,7 +2,7 @@ using System.Collections;
 
 public class Controller
 {
-	private Model model = new Model();
+	public Model model = new Model();
 	public View view = new View();
 	
 	public void Start()

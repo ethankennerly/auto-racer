@@ -7,11 +7,13 @@ FEATURES
 	See other boxes in random lanes.
 	Press left or right to change lane.
 	Avoid crashes to accelerate.
+	Camera follows player.
 
 TODO
-	Camera follows player.
+	See finish.
+	Finish.
 	Read finishing position.
-	Pass a box.
+	50 vehicles.
 	Schedule cars to pass in three lanes.
 	Three lanes.
 	Read instructions.
@@ -21,11 +23,14 @@ TODO
 	Some car signals to change lanes.
 	Road moves by.
 	Sunday at lunch, Jennifer finishes three races, in 1st, and 2nd to 5th place.
+	Fog fades in road and cars.
 	See a voxel car.
 	Hear a sound.
+	See a road.
 	Upload to finegamedesign.com/auto-racer
-	Submit to Ludum Dare
+	Submit to Ludum Dare.
 	Find general C# or Unity ease engine like TweenLite (acceleration, steering)
+	Show speed.
 
 NAME IDEA BANK
 

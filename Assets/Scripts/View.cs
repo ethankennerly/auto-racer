@@ -8,6 +8,7 @@ public class View
 	private Transform[] transforms;
 	private Transform player;
 	private Transform camera;
+	private Transform finish;
 	private GameObject[] competitors;
 	private GameObject competitorPrefab;
 
@@ -16,6 +17,8 @@ public class View
 		if (null == player) {
 			player = GameObject.Find("Player").transform;
 			camera = GameObject.Find("Camera").transform;
+			finish = GameObject.Find("Finish").transform;
+			finish.transform.position = Vector3.forward * model.race.finishZ;
 			model.cameraZStart = camera.position.z;
 			competitorPrefab = GameObject.Find("Competitor");
 			competitorPrefab.SetActive(false);

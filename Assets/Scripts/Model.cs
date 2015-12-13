@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Model
 {
+	public bool isShort;
 	public int competitorCount;
 	public int playerIndex;
 	public Vehicle player;
@@ -16,8 +17,26 @@ public class Model
 	private float[] laneOriginals = new float[]{-1.0f, 0.0f, 1.0f};
 	private Deck lanes = new Deck();
 
+	private void StartIsShort(bool isShort)
+	{
+		if (isShort)
+		{
+			race.finishZ = 20.0f;
+			vehicleCount = 10;
+			player.drive.rates[0] = 2.5f;
+		}
+		else
+		{
+			race.finishZ = 260.0f;
+			vehicleCount = 50;
+		}
+	}
+
 	public void Start()
 	{
+		player = new Vehicle();
+		player.drive.Start();
+		StartIsShort(isShort);
 		lanes.Setup(laneOriginals, laneCopies); 
 		vehicles = new Vehicle[vehicleCount];
 		competitorCount = vehicleCount - 1;
@@ -30,8 +49,6 @@ public class Model
 			vehicles[index] = vehicle;
 		}
 		playerIndex = competitorCount;
-		player = new Vehicle();
-		player.drive.Start();
 		vehicles[competitorCount] = player;
 	}
 

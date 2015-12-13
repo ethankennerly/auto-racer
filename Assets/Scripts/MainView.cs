@@ -3,10 +3,13 @@ using System.Collections;
 
 public class MainView : MonoBehaviour
 {
+	public bool isShort = false;
+
 	private Controller controller = new Controller();
 	
 	private void Start()
 	{
+		controller.model.isShort = isShort;
 		controller.view.InstantiatePrefab = InstantiatePrefab;
 		controller.Start();
 	}
