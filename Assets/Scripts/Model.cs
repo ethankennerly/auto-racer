@@ -49,28 +49,12 @@ public class Model
 	public string state = "Ready";
 	public string finishText = " ";
 
-	private void StartIsShort(bool isShort)
-	{
-		if (isShort)
-		{
-			race.finishZ = 20.0f;
-			race.vehicleCount = 8;
-			race.competitorCount = race.vehicleCount - 1;
-			player.drive.rates[0] = 5.0f;
-		}
-		else
-		{
-			race.finishZ = 260.0f;
-		}
-	}
-
 	public void Start()
 	{
 		isRestart = false;
 		player = new Vehicle();
 		player.drive.Start();
-		race.Start(player);
-		StartIsShort(isShort);
+		race.Start(player, isShort);
 		lanes.Setup(laneOriginals, laneCopies); 
 		vehicles = new Vehicle[race.vehicleCount];
 		ranks = new Vehicle[race.vehicleCount];
@@ -131,7 +115,7 @@ public class Model
 					finishText = SetFinishText(player.index);
 					if (race.Finish(player.index))
 					{
-						finishText += string.Format("\nNext level\n{0} of {1}", race.level + 1, race.levelCount);
+						finishText += string.Format("\nNext level\n{0} of {1}", Race.level + 1, race.levelCount);
 					}
 				}
 				if (player != vehicle)

@@ -2,6 +2,8 @@ using UnityEngine;  // Random, Mathf
 
 public class Race
 {
+	public static int level = 0;
+
 	public int competitorCount;
 	public int vehicleCount = 10;
 
@@ -15,7 +17,6 @@ public class Race
 	public float carPerCycleLane = 	// 2.0f; 
 					// 4.0f; 
 					8.0f;
-	public int level = 0;
 	public int levelCount;
 
 	private int[] vehicleCounts = {
@@ -44,11 +45,26 @@ public class Race
 		170.0f
 	};
 
-	public void Start(Vehicle player)
+	private void StartIsShort(Vehicle player, bool isShort)
+	{
+		if (isShort)
+		{
+			finishZ = 20.0f;
+			vehicleCount = level + 2;
+			player.drive.rates[0] = 5.0f;
+		}
+		else
+		{
+			finishZ = 260.0f;
+		}
+	}
+
+	public void Start(Vehicle player, bool isShort)
 	{
 		levelCount = topSpeeds.Length;
 		vehicleCount = vehicleCounts[level];
 		player.drive.derivatives[2] = topSpeeds[level];
+		StartIsShort(player, isShort);
 		competitorCount = vehicleCount - 1;
 	}
 
