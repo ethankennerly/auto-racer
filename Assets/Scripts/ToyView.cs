@@ -37,4 +37,9 @@ public class ToyView
 		position.z = z;
 		transform.position = position;
 	}
+
+	public static void setText(TextMesh mesh, string text)
+	{
+		mesh.text = text;
+	}
 }

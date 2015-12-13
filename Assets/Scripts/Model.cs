@@ -2,6 +2,35 @@ using UnityEngine;
 
 public class Model
 {
+	public static string cardinal(int rank)
+	{
+		string place = "th";
+		if (rank < 10 || 20 <= rank)
+		{
+			int lastDigit = rank % 10;
+			if (1 == lastDigit)
+			{
+				place = "st";
+			}
+			else if (2 == lastDigit)
+			{
+				place = "nd";
+			}
+			else if (3 == lastDigit)
+			{
+				place = "rd";
+			}
+		}
+		return place;
+	}
+
+	public static string SetFinishText(int index)
+	{
+		int rank = index + 1;
+		return string.Format("{0}{1} place!", 
+			rank, cardinal(rank));
+	}
+
 	public bool isShort;
 	public bool isRestart;
 	public bool isRestartNow;
@@ -18,14 +47,16 @@ public class Model
 	private Deck lanes = new Deck();
 	private bool isAccelerating = false;
 	public string state = "Ready";
+	public string finishText = " ";
 
 	private void StartIsShort(bool isShort)
 	{
 		if (isShort)
 		{
 			race.finishZ = 20.0f;
-			race.vehicleCount = 10;
-			player.drive.rates[0] = 3.0f;
+			race.vehicleCount = 8;
+			race.competitorCount = race.vehicleCount - 1;
+			player.drive.rates[0] = 5.0f;
 		}
 		else
 		{
@@ -95,6 +126,14 @@ public class Model
 			if (race.finishZ <= vehicle.z &&
 				vehicle.IsFinishingNow())
 			{
+				if (player == vehicle)
+				{
+					finishText = SetFinishText(player.index);
+					if (race.Finish(player.index))
+					{
+						finishText += string.Format("\nNext level\n{0} of {1}", race.level + 1, race.levelCount);
+					}
+				}
 				if (player != vehicle)
 				{
 					vehicle.index = System.Array.IndexOf(ranks, vehicle);

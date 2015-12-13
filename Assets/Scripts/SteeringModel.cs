@@ -7,7 +7,7 @@ public class SteeringModel
 	public static float laneRight = 1.0f;
 
 	public float cameraX = 0.0f;
-	public float cameraXMultiplier = 0.75f;
+	public float cameraXMultiplier = 0.5f; // 0.75f;
 	public bool isChanging = false;
 	public bool isInputLeft = false;
 	public bool isInputRight = false;
@@ -38,11 +38,11 @@ public class SteeringModel
 	/**
 	 * If was input left or right then ignore input this frame.  Perhaps multiple updates are being called per frame, since it is a fixed update.  Test case:  2015-10-31 In left lane.  Press right.  Expect move one lane.  Sometimes move two lanes.
 	 */
-	public float Update(float deltaTime) 
+	public float Update(float deltaSeconds) 
 	{
-		if (!isFinished && isCycleLane && 0.0f < deltaTime)
+		if (isCycleLane)
 		{
-			CycleLane(deltaTime);
+			CycleLane(deltaSeconds);
 		}
 		if (isInputLeft && isInputRight) 
 		{
@@ -63,7 +63,7 @@ public class SteeringModel
 		{
 			laneTarget = Mathf.Max(laneLeft, Mathf.Min(laneRight, laneTarget));
 			xDifference = laneTarget - x;
-			x += xDifference * deltaTime * speed;
+			x += xDifference * deltaSeconds * speed;
 			if (Mathf.Abs(xDifference) <= tolerance 
 			|| (xDifference < 0 && x < laneTarget)
 			|| (0 < xDifference && laneTarget < x)) 
@@ -101,7 +101,11 @@ public class SteeringModel
 
 	public void CycleLane(float deltaSeconds)
 	{
-		if (!isChanging)
+		if (isFinished || deltaSeconds <= 0.0f)
+		{
+			state = "None";
+		}
+		else if (!isChanging)
 		{
 			cycleWaited += deltaSeconds;
 			if (cycleDelay <= cycleWaited)

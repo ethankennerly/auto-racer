@@ -4,6 +4,7 @@ public class View
 {
 	public Model model;
 	public GameObject main;
+	public TextMesh finishText;
 	public GameObject[] competitors;
 	public delegate GameObject InstantiatePrefabDelegate(GameObject prefab, Vector3 position);
 	public InstantiatePrefabDelegate InstantiatePrefab;
@@ -20,6 +21,7 @@ public class View
 			player = GameObject.Find("Player").transform;
 			camera = GameObject.Find("Camera").transform;
 			finish = GameObject.Find("Finish").transform;
+			finishText = GameObject.Find("FinishText").GetComponent<TextMesh>();
 			finish.transform.position = Vector3.forward * model.race.finishZ;
 			model.cameraZStart = camera.position.z;
 			competitorPrefab = GameObject.Find("Competitor");

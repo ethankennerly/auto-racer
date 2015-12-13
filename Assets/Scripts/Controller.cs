@@ -16,6 +16,7 @@ public class Controller
 	{
 		model.Update(deltaSeconds);
 		ToyView.setState(view.main, model.state);
+		ToyView.setText(view.finishText, model.finishText);
 		for (int c = 0; c < model.race.competitorCount; c++)
 		{
 			if (null != view.competitors[c])

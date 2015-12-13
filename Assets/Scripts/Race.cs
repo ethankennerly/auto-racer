@@ -1,4 +1,4 @@
-using UnityEngine;  // Random
+using UnityEngine;  // Random, Mathf
 
 public class Race
 {
@@ -16,6 +16,7 @@ public class Race
 					// 4.0f; 
 					8.0f;
 	public int level = 0;
+	public int levelCount;
 
 	private int[] vehicleCounts = {
 		50,
@@ -45,6 +46,7 @@ public class Race
 
 	public void Start(Vehicle player)
 	{
+		levelCount = topSpeeds.Length;
 		vehicleCount = vehicleCounts[level];
 		player.drive.derivatives[2] = topSpeeds[level];
 		competitorCount = vehicleCount - 1;
@@ -91,5 +93,15 @@ public class Race
 	{
 		return finishZ + postZ 
 			- (0.5f + (float) index);
+	}
+
+	public bool Finish(int index)
+	{
+		bool isLevelUp = index <= 0;
+		if (isLevelUp)
+		{
+			level = Mathf.Min(topSpeeds.Length, level + 1);
+		}
+		return isLevelUp;
 	}
 }

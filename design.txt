@@ -19,13 +19,13 @@ FEATURES
 		Test case:  2015-12-12 Jennifer Russ expects sign to lift.  Got pass through.
 	Read:  Auto Racer / Press LEFT or RIGHT to start.
 	Finish:  Read:  Press LEFT or RIGHT for next race.
+	Sunday morning, Jennifer races between some oscillating cars.
 
 TODO
-	Sunday morning, Jennifer races.
+	If finish first, increase level.
 	Higher level faster cars.
 	Higher level more cars that oscillate.
 	Higher level some car becomes an oscillator.
-	If finish first, increase level.
 	Finish in place.  Read finishing position.  
 	If finish first read advance to next race.
 	Finish near 1st if make only one mistake.
