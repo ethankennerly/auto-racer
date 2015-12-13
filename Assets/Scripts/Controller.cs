@@ -15,6 +15,7 @@ public class Controller
 	public void Update(float deltaSeconds)
 	{
 		model.Update(deltaSeconds);
+		ToyView.setState(view.main, model.state);
 		view.Update(deltaSeconds);
 	}
 }

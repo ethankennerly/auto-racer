@@ -86,7 +86,7 @@ public class Vehicle
 		{
 			speed *= collisionSpeedMultiplier;
 			drive.derivatives[0] = speed;
-			// Debug.Log("Vehicle.UpdateCollision: Collided.  New speed " + speed + ". Collision index " + collisionIndex);
+			Debug.Log("Vehicle.UpdateCollision: Collided.  New speed " + speed + ". Collision index " + collisionIndex);
 		}
 		return isCollidingNow;
 	}

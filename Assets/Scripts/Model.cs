@@ -16,6 +16,7 @@ public class Model
 	private float[] laneOriginals = new float[]{-1.0f, 0.0f, 1.0f};
 	private Deck lanes = new Deck();
 	private bool isAccelerating = false;
+	public string state = "Ready";
 
 	private void StartIsShort(bool isShort)
 	{
@@ -61,6 +62,7 @@ public class Model
 			if (player.steering.isInputLeft || player.steering.isInputRight)
 			{
 				isAccelerating = true;
+				state = "Start";
 			}
 			else
 			{

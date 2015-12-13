@@ -3,6 +3,7 @@ using UnityEngine;
 public class View
 {
 	public Model model;
+	public GameObject main;
 	public delegate GameObject InstantiatePrefabDelegate(GameObject prefab, Vector3 position);
 	public InstantiatePrefabDelegate InstantiatePrefab;
 	private Transform[] transforms;
@@ -14,7 +15,8 @@ public class View
 
 	public void Start()
 	{
-		if (null == player) {
+		if (null == main) {
+			main = GameObject.Find("Main");
 			player = GameObject.Find("Player").transform;
 			camera = GameObject.Find("Camera").transform;
 			finish = GameObject.Find("Finish").transform;
@@ -36,6 +38,7 @@ public class View
 			}
 			else
 			{
+				vehicle.y = competitorPrefab.transform.position.y;
 				Vector3 position = new Vector3(vehicle.x, vehicle.y, vehicle.z);
 				GameObject competitor = InstantiatePrefab(competitorPrefab, position);
 				competitors[competitorIndex] = competitor;
@@ -46,21 +49,13 @@ public class View
 		}
 	}
 
-	private void SetPosition(Transform transform, float x, float z)
-	{
-		Vector3 position = transform.position;
-		position.x = x;
-		position.z = z;
-		transform.position = position;
-	}
-
 	private void UpdatePositions(Transform[] transforms)
 	{
 		for (int index = 0; index < transforms.Length; index++) {
 			Transform transform = transforms[index];
 			float x = model.vehicles[index].x;
 			float z = model.vehicles[index].z;
-			SetPosition(transform, x, z);
+			ToyView.SetPositionXZ(transform, x, z);
 		}
 	}
 
@@ -74,6 +69,6 @@ public class View
 	{
 		UpdateInput(model.player.steering);
 		UpdatePositions(transforms);
-		SetPosition(camera, model.player.steering.cameraX, model.cameraZ);
+		ToyView.SetPositionXZ(camera, model.player.steering.cameraX, model.cameraZ);
 	}
 }
