@@ -8,7 +8,6 @@ public class Vehicle
 	public float z = 0.0f;
 	public float finishZ = 0.0f;
 	public float stopZ = 0.0f;
-	public bool isFinished = false;
 	public int index;
 
 	public Drive drive = new Drive();
@@ -94,11 +93,11 @@ public class Vehicle
 
 	public bool IsFinishingNow()
 	{
-		bool isNow = !isFinished;
+		bool isNow = !steering.isFinished;
 		if (isNow)
 		{
 			// Debug.Log("IsFinishingNow");
-			isFinished = true;
+			steering.isFinished = true;
 			drive.rates = drive.ratesFinish;
 			steering.isCycleLane = false;
 		}
@@ -108,7 +107,7 @@ public class Vehicle
 	public void Update(float deltaSeconds)
 	{
 		x = steering.Update(deltaSeconds);
-		if (isFinished)
+		if (steering.isFinished)
 		{
 			drive.derivatives[2] = stopZ - z;
 		}

@@ -87,6 +87,7 @@ public class Model
 			vehicle.Update(deltaSeconds);
 		}
 		if (player.IsUpdateRank(ranks)) {
+			race.CycleLaneAhead(vehicles, player);
 		}
 		player.UpdateCollision(ranks);
 		cameraZ = player.z + cameraZStart;

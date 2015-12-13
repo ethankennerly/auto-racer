@@ -14,25 +14,25 @@ FEATURES
 	8th cars oscillate a lane each 2 seconds.
 	After finish, no longer cycle.
 	Cars spread out.
+	At a higher level, random cars oscillate.
 
 TODO
-	Saturday night, Jennifer races.
-	At a higher level, cars oscillate.
+	Sunday morning, Jennifer races.
 	Finish near 1st if make only one mistake.
 	Finish in place.  Read finishing position.
-	See three lanes.
 	Read:  Auto Racer / Press LEFT or RIGHT to start.
+	Restart.
 	Higher level faster cars.
 	Higher level more cars that oscillate.
 	Higher level some car becomes an oscillator.
 	Experiment with two lanes.
+	See three lanes.
 	Some car signals to change lanes.
 	Sunday at lunch, Jennifer finishes three races, in 1st, and 2nd to 5th place.
 	Fog fades in road and cars.
 	See a voxel car.
 	Hear a sound.
 	Road moves by.
-	Restart.
 	Sunday at 5, Jennifer finishes three races, in 1st, and 2nd to 5th place.
 	Test case:  2015-12-12 Jennifer Russ expects sign to lift.
 	Upload to finegamedesign.com/auto-racer

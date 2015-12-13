@@ -1,4 +1,4 @@
-using UnityEngine;  // Mathf;
+using UnityEngine;  // Mathf, Random;
 
 public class SteeringModel 
 {
@@ -21,6 +21,7 @@ public class SteeringModel
 	private float xDifference = 0.0f;
 	private float tolerance = 0.001f;
 
+	public bool isFinished = false;
 	public bool isCycleLane = false;
 	public float cycleDirection = 1.0f;
 	private float cycleDelay = 0.5f;
@@ -37,7 +38,7 @@ public class SteeringModel
 	 */
 	public float Update(float deltaTime) 
 	{
-		if (isCycleLane)
+		if (!isFinished && isCycleLane)
 		{
 			CycleLane(deltaTime);
 		}
@@ -75,6 +76,16 @@ public class SteeringModel
 		return x;
 	}
 	
+	public void StartCycleLane()
+	{
+		isCycleLane = true;
+		if (Random.value < 0.5f)
+		{
+			cycleDirection = -cycleDirection;
+		}
+		cycleWaited = cycleDelay - 0.5f;
+	}
+
 	public void CycleLane(float deltaSeconds)
 	{
 		if (!isChanging)

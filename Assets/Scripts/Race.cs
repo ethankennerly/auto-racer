@@ -1,3 +1,5 @@
+using UnityEngine;  // Random
+
 public class Race
 {
 	public float playerSpeed = 0.5f;
@@ -27,7 +29,24 @@ public class Race
 		
 		if (index % carPerCycleLane == 0)
 		{
-			vehicle.steering.isCycleLane = true;
+			vehicle.steering.StartCycleLane();
+		}
+	}
+
+	public void CycleLaneAhead(Vehicle[] vehicles, Vehicle player)
+	{
+		int index = player.index;
+		int ahead = index 
+			- (int) (carPerCycleLane 
+			- (Random.value * 50))
+			- 2;
+		if (0 <= ahead && ahead < vehicles.Length && index != ahead)
+		{
+			Vehicle vehicle = vehicles[ahead];
+			if (player != vehicle)
+			{
+				vehicle.steering.StartCycleLane();
+			}
 		}
 	}
 
