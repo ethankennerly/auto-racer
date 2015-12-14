@@ -3,6 +3,7 @@ using UnityEngine;
 public class MainView : MonoBehaviour
 {
 	public bool isShort = false;
+	public AudioClip collisionSound;
 
 	private Controller controller = new Controller();
 	
@@ -10,6 +11,7 @@ public class MainView : MonoBehaviour
 	{
 		controller.model.isShort = isShort;
 		controller.view.InstantiatePrefab = InstantiatePrefab;
+		controller.view.sounds = this;
 		controller.Start();
 	}
 

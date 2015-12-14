@@ -34,11 +34,11 @@ public class Race
 	};
 
 	private int[] carPerCycleLanes = {
-		-1, 20, 12, 11, 10, 9, 8, 7, 6, 6
+		-1, 20, 10, 10, 9, 9, 8, 7, 6, 6
 	};
 
 	private int[] randomPerCycleLanes = {
-		-1, -1, -1, -1, 100, 80, 60, 40, 30, 20
+		-1, -1, 80, 70, 60, 50, 40, 30, 20, 20
 	};
 
 	private void StartIsShort(Vehicle player, bool isShort)

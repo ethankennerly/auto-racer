@@ -16,6 +16,8 @@ public class View
 	private Transform finish;
 	private GameObject competitorPrefab;
 	private GameObject roadPrefab;
+	private AudioSource audio;
+	public MainView sounds;
 
 	private void ConstructRoad()
 	{
@@ -43,6 +45,7 @@ public class View
 			competitorPrefab = GameObject.Find("Competitor");
 			competitorPrefab.SetActive(false);
 			ConstructRoad();
+			audio = main.gameObject.GetComponent<AudioSource>();
 		}
 		competitors = new GameObject[model.race.competitorCount];
 		int vehicleCount = model.race.vehicleCount;
@@ -123,6 +126,14 @@ public class View
 		}
 	}
 
+	private void UpdateSounds()
+	{
+		if (model.player.isCollidingNow)
+		{
+			audio.PlayOneShot(sounds.collisionSound);
+		}
+	}
+
 	public void Update(float deltaSeconds)
 	{
 		UpdateCheat();
@@ -134,5 +145,6 @@ public class View
 			Application.LoadLevel(Application.loadedLevel);
 		}
 		UpdateAnalytics();
+		UpdateSounds();
 	}
 }
