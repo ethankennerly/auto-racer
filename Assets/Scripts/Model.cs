@@ -32,6 +32,7 @@ public class Model
 	}
 
 	public bool isShort;
+	public bool isPerfectMode;
 	public bool isFinish;
 	public bool isRestart;
 	public bool isRestartNow;
@@ -147,7 +148,16 @@ public class Model
 		if (player.IsUpdateRank(ranks)) {
 			race.CycleLaneAhead(vehicles, player);
 		}
-		player.UpdateCollision(ranks);
+		if (!isPerfectMode)
+		{
+			player.UpdateCollision(ranks);
+		}
 		cameraZ = player.z + cameraZStart;
+	}
+
+	public void toggleIsPerfectMode()
+	{
+		isPerfectMode = !isPerfectMode;
+		Debug.Log("Model.toggleIsPerfectMode: " + isPerfectMode);
 	}
 }

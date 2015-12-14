@@ -70,6 +70,24 @@ public class View
 		steering.isInputRight = Input.GetKeyDown(KeyCode.RightArrow);
 	}
 
+	private void UpdateCheat()
+	{
+		if (Input.GetKeyDown("page up"))
+		{
+			model.race.CheatLevelUp(1);
+			model.isRestartNow = true;
+		}
+		else if (Input.GetKeyDown("page down"))
+		{
+			model.race.CheatLevelUp(-1);
+			model.isRestartNow = true;
+		}
+		else if (Input.GetKeyDown("1"))
+		{
+			model.toggleIsPerfectMode();
+		}
+	}
+
 	private void UpdateAnalytics()
 	{
 		if (null != model.stateNow)
@@ -92,6 +110,7 @@ public class View
 
 	public void Update(float deltaSeconds)
 	{
+		UpdateCheat();
 		UpdateInput(model.player.steering);
 		UpdatePositions(transforms);
 		ToyView.SetPositionXZ(camera, model.player.steering.cameraX, model.cameraZ);

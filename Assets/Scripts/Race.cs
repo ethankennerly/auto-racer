@@ -20,16 +20,20 @@ public class Race
 	public int randomPerCycleLane = -1;
 	public int levelCount;
 
+	private float[] finishZs = {
+		60.0f, 120.0f, 200.0f, 220.0f, 260.0f, 260.0f, 260.0f, 260.0f, 260.0f, 260.0f
+	};
+
 	private int[] vehicleCounts = {
-		50, 60, 70, 80, 90, 100, 110, 120, 130, 140
+		12, 16, 24, 40, 50, 60, 70, 80, 90, 100
 	};
 
 	private float[] topSpeeds = {
-		80.0f, 90.0f, 100.0f, 110.0f, 120.0f, 130.0f, 140.0f, 150.0f, 160.0f, 170.0f
+		60.0f, 70.0f, 80.0f, 90.0f, 100.0f, 110.0f, 120.0f, 130.0f, 140.0f, 150.0f
 	};
 
 	private int[] carPerCycleLanes = {
-		-1, -1, 20, 12, 11, 10, 9, 8, 7, 6
+		-1, 20, 12, 11, 10, 9, 8, 7, 6, 6
 	};
 
 	private int[] randomPerCycleLanes = {
@@ -44,10 +48,6 @@ public class Race
 			vehicleCount = level + 2;
 			player.drive.rates[0] = 5.0f;
 		}
-		else
-		{
-			finishZ = 260.0f;
-		}
 	}
 
 	public void Start(Vehicle player, bool isShort)
@@ -57,6 +57,7 @@ public class Race
 		player.drive.derivatives[2] = topSpeeds[level];
 		carPerCycleLane = carPerCycleLanes[level];
 		randomPerCycleLane = randomPerCycleLanes[level];
+		finishZ = finishZs[level];
 		StartIsShort(player, isShort);
 		competitorCount = vehicleCount - 1;
 	}
@@ -64,11 +65,12 @@ public class Race
 	public void SetupCompetitor(Vehicle vehicle, int index, int competitorCount)
 	{
 		float total = (float) competitorCount;
+		float denominator = Mathf.Max(20.0f, total);
 		float advantage = total - (float) index;
 		float[] derivatives = new float[]{
-			competitorSpeed / total * advantage, 
-			competitorSpeedDerivative / total * advantage, 
-			competitorSpeedDerivative / total * advantage
+			competitorSpeed / denominator * advantage, 
+			competitorSpeedDerivative / denominator * advantage, 
+			competitorSpeedDerivative / denominator * advantage
 		}; 
 		vehicle.z = competitorStart + advantage;
 		vehicle.stopZ = CalculateStop(index);
@@ -112,8 +114,18 @@ public class Race
 		bool isLevelUp = index <= 0;
 		if (isLevelUp)
 		{
-			level = Mathf.Min(topSpeeds.Length, level + 1);
+			level = Mathf.Min(topSpeeds.Length - 1, level + 1);
 		}
 		return isLevelUp;
+	}
+
+	public void CheatLevelUp(int amount)
+	{
+		level = (level + amount) % levelCount;
+		if (level < 0)
+		{
+			level += levelCount;
+		}
+		Debug.Log("CheatLevelUp: level index " + level);
 	}
 }

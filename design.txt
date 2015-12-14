@@ -26,19 +26,19 @@ FEATURES
 	Higher level some car becomes an oscillator.
 	Finish in place.  Read finishing position.  
 	If finish first read advance to next race.
+	Fog fades in road and cars.
+	Some car signals to change lanes.
 
 TODO
-	Fog fades in road and cars.
 	See a voxel car.
-	Finish near 1st if make only one mistake.
 	Animate collision.
 	See three lanes.
-	Some car signals to change lanes.
-	Collide.  Hear a sound.  Pass.  Hear a sound.
 	Road moves by.
+	Collide.  Hear a sound.  Pass.  Hear a sound.
 	Sunday at 5, Jennifer finishes three races, in 1st, and 2nd to 5th place.
 	Upload to finegamedesign.com/auto-racer
 	Submit to Ludum Dare.
+	Finish near 1st if make only one mistake.
 	Smooth transition.
 	Experiment with two lanes.
 	Find general C# or Unity ease engine like TweenLite (acceleration, steering)
