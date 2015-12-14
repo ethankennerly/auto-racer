@@ -12,6 +12,7 @@ public class Race
 	public float competitorSpeedDerivative = 10.0f; // 5.0f;
 	public float competitorStart = 5.0f;
 	public float finishZ = 260.0f;
+	public float roadZ = 300.0f;
 	public float cameraZ;
 	public float postZ = 15.0f;
 	public float carPerCycleLane = 	// 2.0f; 

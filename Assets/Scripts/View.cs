@@ -15,6 +15,20 @@ public class View
 	private Transform camera;
 	private Transform finish;
 	private GameObject competitorPrefab;
+	private GameObject roadPrefab;
+
+	private void ConstructRoad()
+	{
+		roadPrefab = GameObject.Find("Road");
+		roadPrefab.SetActive(false);
+		float step = roadPrefab.transform.localScale.z;
+		Vector3 original = roadPrefab.transform.position;
+		for (float z = 0.0f; z < model.race.roadZ; z += step)
+		{
+			Vector3 position = new Vector3(original.x, original.y, z);
+			GameObject road = InstantiatePrefab(roadPrefab, position);
+		}
+	}
 
 	public void Start()
 	{
@@ -28,6 +42,7 @@ public class View
 			model.cameraZStart = camera.position.z;
 			competitorPrefab = GameObject.Find("Competitor");
 			competitorPrefab.SetActive(false);
+			ConstructRoad();
 		}
 		competitors = new GameObject[model.race.competitorCount];
 		int vehicleCount = model.race.vehicleCount;
