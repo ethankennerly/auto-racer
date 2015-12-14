@@ -35,9 +35,9 @@ TODO
 	See three lanes.
 	Road moves by.
 	Collide.  Hear a sound.  Pass.  Hear a sound.
-	Sunday at 5, Jennifer finishes three races, in 1st, and 2nd to 5th place.
 	Upload to finegamedesign.com/auto-racer
 	Submit to Ludum Dare.
+	Sunday at 6, Jennifer finishes three races, in 1st, and 2nd to 5th place.
 	Finish near 1st if make only one mistake.
 	Smooth transition.
 	Experiment with two lanes.
