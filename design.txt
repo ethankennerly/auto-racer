@@ -29,11 +29,12 @@ FEATURES
 	Fog fades in road and cars.
 	Some car signals to change lanes.
 	See a voxel car.
-
-TODO
 	See three lanes.
 	Road moves by.
+
+TODO
 	Animate collision.
+	Animate first place.
 	Collide.  Hear a sound.  Pass.  Hear a sound.
 	Upload to finegamedesign.com/auto-racer
 	Submit to Ludum Dare.
