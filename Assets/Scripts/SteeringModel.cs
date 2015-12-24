@@ -19,6 +19,7 @@ public class SteeringModel
 	public bool isVerbose = false;
 	private bool wasInputLeft = false;
 	private bool wasInputRight = false;
+	public float speedBase = 5.0f;
 	public float speed = 5.0f;
 	public float x = 0.0f;
 	public string state = "None";
@@ -92,6 +93,18 @@ public class SteeringModel
 		wasInputLeft = isInputLeft;
 		wasInputRight = isInputRight;
 		return x;
+	}
+
+	/**
+	 * At higher speed, change lane up to twice as fast.
+	 * Test case:  2015-12-16 Level 7 or higher:  Drtizzle expects to change lane faster.
+	 */
+	public void SetSpeed(float speedForward)
+	{
+		float speedFactor = 0.5f;
+		// 1.0f;
+		speed = speedFactor * speedForward;
+		speed = Mathf.Max(speed, speedBase);
 	}
 	
 	private float MayFlipCycleDirection()

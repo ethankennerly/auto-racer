@@ -3,6 +3,7 @@ using UnityEngine;
 public class MainView : MonoBehaviour
 {
 	public bool isShort = false;
+	public float steeringSpeed;
 	public AudioClip collisionSound;
 
 	private Controller controller = new Controller();
@@ -30,5 +31,6 @@ public class MainView : MonoBehaviour
 	private void Update()
 	{
 		controller.Update(Time.deltaTime);
+		steeringSpeed = controller.model.player.steering.speed;
 	}
 }

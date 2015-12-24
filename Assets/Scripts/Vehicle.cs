@@ -120,5 +120,6 @@ public class Vehicle
 		}
 		z += drive.Update(deltaSeconds);
 		speed = drive.derivatives[0];
+		steering.SetSpeed(speed);
 	}
 }

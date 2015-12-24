@@ -16,7 +16,9 @@ public class Drive
 	{
 		for (int index = rates.Length - 1; 0 <= index; index--)
 		{
-			derivatives[index] += (derivatives[index + 1] - derivatives[index]) * deltaSeconds * rates[index];
+			derivatives[index] += (derivatives[index + 1] 
+				- derivatives[index]) 
+				* deltaSeconds * rates[index];
 		}
 		return derivatives[0] * deltaSeconds;
 	}

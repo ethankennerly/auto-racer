@@ -56,6 +56,7 @@ public class Model
 		isRestart = false;
 		player = new Vehicle();
 		player.drive.Start();
+		player.steering.Start(0.0f);
 		race.Start(player, isShort);
 		lanes.Setup(player.steering.lanes, laneCopies); 
 		vehicles = new Vehicle[race.vehicleCount];
@@ -105,7 +106,8 @@ public class Model
 	{
 		isRestartNow = false;
 		stateNow = null;
-		bool isInput = player.steering.isInputLeft || player.steering.isInputRight;
+		bool isInput = player.steering.isInputLeft 
+			|| player.steering.isInputRight;
 		if (!isAccelerating)
 		{
 			if (isInput)
