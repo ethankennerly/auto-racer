@@ -33,6 +33,30 @@ FEATURES
 	Road moves by.
 
 TODO
+	Test case:  2015-12-16 TheMeorch expects to restart level (+TerraCottaFrog, +loxo, +rplnt).
+		Steer off-road: restart.
+		Pass level coming in first with 1 collision, analogous to Train of Thought.
+	Test case:  2015-12-16 Level 7 or higher:  Drtizzle expects to change lane faster.
+		At higher speed, change lane a little faster.
+	Test case:  2015-12-20 Level 8.  Blobo expects to feel challenged.  Felt overwhelmed (+zenmumbler, +Muel).
+		Tune difficulty and test in slow motion.
+	Test case:  2015-12-20 nosfer expects faster.
+		Add 2 more levels that pass more cars faster.
+	Test case:  2015-12-20 Level 7 or higher.  Crash.  Blobo expects not to crash again into next car.
+		Cars behind steer around you.
+		Upon crash blink car.
+		Upon crash do not slow so much as to get passed.  Gradually recover.
+	Test case:  2015-12-15 LittleThor expects sound. (+rnlf, +Crazi456, +nosfer)
+		Generate sound effects
+		Generate soundtrack.  
+			Test case:  2015-12-21 Muel suggests:
+			https://www.youtube.com/watch?v=j4h5v2zat9I
+		Pass rise in pitch with speed.
+		Pass musical note.
+		Crash musical note.
+	Test case:  2015-12-20 TerraCottaFrog expects no wavy water.  2015-12-20 Near finish.  loxo expects no message on side of screen.
+		Letter box left and right.
+		Green color for grass.
 	Animate collision.
 	Animate first place.
 	Collide.  Hear a sound.  Pass.  Hear a sound.
@@ -45,9 +69,6 @@ TODO
 	Find general C# or Unity ease engine like TweenLite (acceleration, steering)
 	Shuffle scenes.
 	Show speed.
-	Pass rise in pitch with speed.
-	Pass musical note.
-	Crash musical note.
 	Cars go over a hill.
 	Cars go around a curve.
 
