@@ -16,6 +16,7 @@ public class SteeringModel
 	public bool isInputLeft = false;
 	public bool isInputRight = false;
 	public bool isOffRoad = false;
+	public bool isSignaling = false;
 	public bool isVerbose = false;
 	private bool wasInputLeft = false;
 	private bool wasInputRight = false;
@@ -120,6 +121,7 @@ public class SteeringModel
 	public void StartCycleLane()
 	{
 		isCycleLane = true;
+		isSignaling = false;
 		if (Random.value < 0.5f)
 		{
 			cycleDirection = -cycleDirection;
@@ -146,13 +148,15 @@ public class SteeringModel
 				laneTarget += MayFlipCycleDirection();
 				isChanging = true;
 				state = "None";
+				isSignaling = false;
 			}
-			else if (cycleDelay - cycleSignal <= cycleWaited)
+			else if (!isSignaling && cycleDelay - cycleSignal <= cycleWaited)
 			{
+				isSignaling = true;
 				state = MayFlipCycleDirection() < 0.0 
 					? "SignalLeft" : "SignalRight";
 			}
-			else
+			else if (!isSignaling)
 			{
 				state = "None";
 			}

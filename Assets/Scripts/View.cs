@@ -93,6 +93,32 @@ public class View
 		steering.isInputRight = Input.GetKeyDown(KeyCode.RightArrow);
 	}
 
+	/**
+	 * Test case:  2015-12-20 Level 8.  Blobo expects to feel challenged.  Felt overwhelmed (+zenmumbler, +Muel).
+	 *	Tune difficulty and test in slow motion.
+	 * Also update fixed delta time but not delta time.
+	 * http://docs.unity3d.com/ScriptReference/Time-timeScale.html
+	 */
+	private void UpdateCheatTimeScale()
+	{
+		float scale = 1.0f;
+		float factor = 2.0f;
+		if (Input.GetKeyDown("2"))
+		{
+			scale /= factor;
+		}
+		else if (Input.GetKeyDown("3"))
+		{
+			scale *= factor;
+		}
+		if (1.0f != scale)
+		{
+			Time.timeScale *= scale;
+			Time.fixedDeltaTime *= scale;
+			Debug.Log("View.UpdateCheatTimeScale: to " + Time.timeScale);
+		}
+	}
+
 	private void UpdateCheat()
 	{
 		if (Input.GetKeyDown("page up"))
@@ -109,6 +135,7 @@ public class View
 		{
 			model.toggleIsPerfectMode();
 		}
+		UpdateCheatTimeScale();
 	}
 
 	private void UpdateAnalytics()

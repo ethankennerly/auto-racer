@@ -31,13 +31,16 @@ FEATURES
 	See a voxel car.
 	See three lanes.
 	Road moves by.
-	Steer off-road: restart.  Test case:  2015-12-16 TheMeorch expects to restart level (+TerraCottaFrog, +loxo, +rplnt).
+	Steer off-road: restart.  
+		Test case:  2015-12-16 TheMeorch expects to restart level (+TerraCottaFrog, +loxo, +rplnt).
+	At higher speed, change lane up to twice as fast.
+		Test case:  2015-12-16 Level 7 or higher:  Drtizzle expects to change lane faster.
 
 TODO
-	Test case:  2015-12-16 Level 7 or higher:  Drtizzle expects to change lane faster.
-		At higher speed, change lane a little faster.
 	Test case:  2015-12-20 Level 8.  Blobo expects to feel challenged.  Felt overwhelmed (+zenmumbler, +Muel).
 		Tune difficulty and test in slow motion.
+	Test case:  2015-12-21 Level 10.  Muel expects moment before changing lane and passing.
+		Prevent changing lane just before passing.
 	Test case:  2015-12-20 nosfer expects faster.
 		Add 2 more levels that pass more cars faster.
 	Test case:  2015-12-20 Level 7 or higher.  Crash.  Blobo expects not to crash again into next car.
