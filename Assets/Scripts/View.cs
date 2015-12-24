@@ -8,7 +8,8 @@ public class View
 	public GameObject main;
 	public TextMesh finishText;
 	public GameObject[] competitors;
-	public delegate GameObject InstantiatePrefabDelegate(GameObject prefab, Vector3 position);
+	public delegate GameObject InstantiatePrefabDelegate(GameObject prefab, 
+		Vector3 position);
 	public InstantiatePrefabDelegate InstantiatePrefab;
 	private Transform[] transforms;
 	private Transform player;
@@ -28,7 +29,7 @@ public class View
 		for (float z = 0.0f; z < model.race.roadZ; z += step)
 		{
 			Vector3 position = new Vector3(original.x, original.y, z);
-			GameObject road = InstantiatePrefab(roadPrefab, position);
+			InstantiatePrefab(roadPrefab, position);
 		}
 	}
 
@@ -39,8 +40,10 @@ public class View
 			player = GameObject.Find("Player").transform;
 			camera = GameObject.Find("Camera").transform;
 			finish = GameObject.Find("Finish").transform;
-			finishText = GameObject.Find("FinishText").GetComponent<TextMesh>();
-			finish.transform.position = Vector3.forward * model.race.finishZ;
+			finishText = GameObject.Find("FinishText")
+				.GetComponent<TextMesh>();
+			finish.transform.position = Vector3.forward 
+				* model.race.finishZ;
 			model.cameraZStart = camera.position.z;
 			competitorPrefab = GameObject.Find("Competitor");
 			competitorPrefab.SetActive(false);
@@ -62,8 +65,10 @@ public class View
 			else
 			{
 				vehicle.y = competitorPrefab.transform.position.y;
-				Vector3 position = new Vector3(vehicle.x, vehicle.y, vehicle.z);
-				GameObject competitor = InstantiatePrefab(competitorPrefab, position);
+				Vector3 position = new Vector3(
+					vehicle.x, vehicle.y, vehicle.z);
+				GameObject competitor = InstantiatePrefab(
+					competitorPrefab, position);
 				competitors[competitorIndex] = competitor;
 				competitorIndex++;
 				transform = competitor.transform;
@@ -112,7 +117,8 @@ public class View
 		{
 			string levelCategory = "Level " + Race.level;
 			int collisionCount = model.player.collisionCount;
-			Dictionary<string, object> eventData = new Dictionary<string, object> {
+			Dictionary<string, object> eventData 
+			= new Dictionary<string, object> {
 				{ "levelCategory", levelCategory },
 				{ "levelIndex", Race.level},
 				{ "rank", model.player.index + 1},
@@ -139,7 +145,8 @@ public class View
 		UpdateCheat();
 		UpdateInput(model.player.steering);
 		UpdatePositions(transforms);
-		ToyView.SetPositionXZ(camera, model.player.steering.cameraX, model.cameraZ);
+		ToyView.SetPositionXZ(camera, model.player.steering.cameraX, 
+			model.cameraZ);
 		if (model.isRestartNow)
 		{
 			Application.LoadLevel(Application.loadedLevel);

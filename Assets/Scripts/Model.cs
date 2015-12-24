@@ -45,7 +45,6 @@ public class Model
 	public Race race = new Race();
 	private int laneCount;
 	private int laneCopies = 3;
-	private float[] laneOriginals = new float[]{-1.0f, 0.0f, 1.0f};
 	private Deck lanes = new Deck();
 	private bool isAccelerating = false;
 	public string state = "Ready";
@@ -58,7 +57,7 @@ public class Model
 		player = new Vehicle();
 		player.drive.Start();
 		race.Start(player, isShort);
-		lanes.Setup(laneOriginals, laneCopies); 
+		lanes.Setup(player.steering.lanes, laneCopies); 
 		vehicles = new Vehicle[race.vehicleCount];
 		ranks = new Vehicle[race.vehicleCount];
 		competitors = new Vehicle[race.competitorCount];
@@ -87,6 +86,19 @@ public class Model
 			stateNow = nextState;
 		}
 		return isNow;
+	}
+
+	/**
+	 * Steer off-road: restart.
+	 * Test case:  2015-12-16 TheMeorch expects to restart level (+TerraCottaFrog, +loxo, +rplnt).
+	 */
+	private void IfOffRoadRestart()
+	{
+		if (!isRestart && player.steering.isOffRoad)
+		{
+			isRestartNow = !isRestart;
+			isRestart = true;
+		}
 	}
 
 	public void Update(float deltaSeconds)
@@ -153,6 +165,7 @@ public class Model
 			player.UpdateCollision(ranks);
 		}
 		cameraZ = player.z + cameraZStart;
+		IfOffRoadRestart();
 	}
 
 	public void toggleIsPerfectMode()

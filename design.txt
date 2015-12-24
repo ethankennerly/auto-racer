@@ -31,11 +31,9 @@ FEATURES
 	See a voxel car.
 	See three lanes.
 	Road moves by.
+	Steer off-road: restart.  Test case:  2015-12-16 TheMeorch expects to restart level (+TerraCottaFrog, +loxo, +rplnt).
 
 TODO
-	Test case:  2015-12-16 TheMeorch expects to restart level (+TerraCottaFrog, +loxo, +rplnt).
-		Steer off-road: restart.
-		Pass level coming in first with 1 collision, analogous to Train of Thought.
 	Test case:  2015-12-16 Level 7 or higher:  Drtizzle expects to change lane faster.
 		At higher speed, change lane a little faster.
 	Test case:  2015-12-20 Level 8.  Blobo expects to feel challenged.  Felt overwhelmed (+zenmumbler, +Muel).
@@ -46,6 +44,8 @@ TODO
 		Cars behind steer around you.
 		Upon crash blink car.
 		Upon crash do not slow so much as to get passed.  Gradually recover.
+	Test case:  2015-12-23 Web GL.  At high speed yet low frame rate, intersect a car.  I expect a collision.  Got sometimes pass through.
+		Continuous collision test.
 	Test case:  2015-12-15 LittleThor expects sound. (+rnlf, +Crazi456, +nosfer)
 		Generate sound effects
 		Generate soundtrack.  
@@ -54,9 +54,20 @@ TODO
 		Pass rise in pitch with speed.
 		Pass musical note.
 		Crash musical note.
+	Test case:  2015-12-16 TheMeorch expects to restart level (+TerraCottaFrog, +loxo, +rplnt).
+		Steer off-road: restart.
+		Animate went off road and is restarting.
+		Record restart count.
+		Pass level coming in first with 1 collision, analogous to Train of Thought.
 	Test case:  2015-12-20 TerraCottaFrog expects no wavy water.  2015-12-20 Near finish.  loxo expects no message on side of screen.
+		More distance between road, grass.
+		Close gap between squares in finish.
+		Texture for finish.
+		Mark sign invisible before animating in and after end.
 		Letter box left and right.
+		Profile performance.
 		Green color for grass.
+	After fininsh, stop turn signals.
 	Animate collision.
 	Animate first place.
 	Collide.  Hear a sound.  Pass.  Hear a sound.
@@ -81,6 +92,7 @@ NAME IDEA BANK
 REFERENCE GAMES
 
 	Road Racer https://github.com/ethankennerly/race
+	Dashy Crashy (Dec 17, 2015) http://toucharcade.com/2015/12/18/toucharcade-game-of-the-week-dashy-crashy/
 	Autobahn http://arcade.modemhelp.net/play-5133-Autobahn.html
 	Just Shut Up and Drive
 	Coaster Racer
