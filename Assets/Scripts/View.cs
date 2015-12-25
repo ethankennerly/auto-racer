@@ -18,6 +18,7 @@ public class View
 	private GameObject competitorPrefab;
 	private GameObject roadPrefab;
 	private AudioSource audio;
+	private AudioSource loop;
 	public MainView sounds;
 
 	private void ConstructRoad()
@@ -49,6 +50,9 @@ public class View
 			competitorPrefab.SetActive(false);
 			ConstructRoad();
 			audio = main.gameObject.GetComponent<AudioSource>();
+			audio.pitch = model.player.SpeedFactor();
+			loop = GameObject.Find("SoundLoop").GetComponent<AudioSource>();
+			loop.Play();
 		}
 		competitors = new GameObject[model.race.competitorCount];
 		int vehicleCount = model.race.vehicleCount;
@@ -75,7 +79,6 @@ public class View
 			}
 			transforms[index] = transform;
 		}
-		audio.pitch = model.player.SpeedFactor();
 	}
 
 	private void SetPositionsXZ(Vehicle[] vehicles, Transform[] transforms)

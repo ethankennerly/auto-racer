@@ -5,6 +5,7 @@ public class MainView : MonoBehaviour
 	public bool isShort = false;
 	public float steeringSpeed;
 	public AudioClip collisionSound;
+	public AudioClip musicSound;
 	public AudioClip passSound;
 	public AudioClip steerLeftSound;
 	public AudioClip steerRightSound;

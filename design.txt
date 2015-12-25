@@ -43,13 +43,13 @@ FEATURES
 		Test case:  2015-12-21 Level 10.  Muel expects moment before changing lane and passing.
 	Shorten race at level 2 to 4.
 		Test case:  2015-12-20 Level 1.  TerraCottaFrog expects challenge.  Felt bored.
-	Test case:  2015-12-20 Level 7 or higher.  Crash.  Blobo expects not to crash again into next car.
-		If competitor is moving faster, do not crash.
-	Test case:  2015-12-15 LittleThor expects sound. (+rnlf, +Crazi456, +nosfer)
-		Hear lane change.
-			http://sfbgames.com/chiptone
-		Hear pass.
-		Pass rise in pitch with speed.
+	If competitor is moving faster, do not crash.
+		Test case:  2015-12-20 Level 7 or higher.  Crash.  Blobo expects not to crash again into next car.
+	Hear lane change.  Hear pass.  Pass rise in pitch with speed.  http://sfbgames.com/chiptone 
+		Test case:  2015-12-15 LittleThor expects sound. (+rnlf, +Crazi456, +nosfer)
+	Hear autotracker_pu.py soundtrack.  
+		Test case:  2015-12-21 Muel suggests:
+		https://www.youtube.com/watch?v=j4h5v2zat9I
 
 TODO
 	Test case:  2015-12-16 TheMeorch expects to restart level (+TerraCottaFrog, +loxo, +rplnt).
@@ -73,9 +73,6 @@ TODO
 		Upon crash do not slow so much as to get passed.  Gradually recover.
 	After fininsh, stop turn signals.
 	Test case:  2015-12-15 LittleThor expects sound. (+rnlf, +Crazi456, +nosfer)
-		Hear generated soundtrack.  
-			Test case:  2015-12-21 Muel suggests:
-			https://www.youtube.com/watch?v=j4h5v2zat9I
 		Hear finish finale.
 		Pass musical note.
 		Crash musical note.
