@@ -12,7 +12,7 @@ public class Race
 	public float competitorSpeedDerivative = 10.0f; // 5.0f;
 	public float competitorStart = 5.0f;
 	public float finishZ = 260.0f;
-	public float roadZ = 300.0f;
+	public float roadZ = 350.0f;
 	public float cameraZ;
 	public float postZ = 15.0f;
 	public float carPerCycleLane = 	// 2.0f; 
@@ -22,23 +22,30 @@ public class Race
 	public int levelCount;
 
 	private float[] finishZs = {
-		60.0f, 120.0f, 200.0f, 220.0f, 260.0f, 260.0f, 260.0f, 260.0f, 260.0f, 260.0f
+		60.0f, 120.0f, 200.0f, 220.0f, 260.0f, 260.0f, 260.0f, 260.0f, 260.0f, 260.0f, 270.0f, 280.0f
 	};
 
 	private int[] vehicleCounts = {
-		12, 16, 24, 40, 50, 60, 70, 80, 90, 100
+		12, 16, 24, 40, 50, 60, 70, 80, 90, 100, 110, 120
 	};
 
 	private float[] topSpeeds = {
-		60.0f, 70.0f, 80.0f, 90.0f, 100.0f, 110.0f, 120.0f, 130.0f, 140.0f, 150.0f
+		60.0f, 70.0f, 80.0f, 90.0f, 100.0f, 110.0f, 120.0f, 130.0f, 140.0f, 150.0f, 160.0f, 170.0f
 	};
 
+	/**
+	 * 
+	 * Reduce frequencies of cars that switch lanes about 10% and test in slow motion.
+	 *	Test case:  2015-12-20 Level 8.  Blobo expects to feel challenged.  Felt overwhelmed (+zenmumbler, +Muel).
+	 * Add 2 more levels that pass more cars about 10% faster.
+	 * 	Test case:  2015-12-20 nosfer expects faster.
+	 */
 	private int[] carPerCycleLanes = {
-		-1, 20, 10, 10, 9, 9, 8, 7, 6, 6
+		-1, 20, 10, 10, 9, 9, 8, 8, 7, 7, 6, 6
 	};
 
 	private int[] randomPerCycleLanes = {
-		-1, -1, 80, 70, 60, 50, 40, 30, 20, 20
+		-1, -1, 80, 70, 60, 50, 40, 35, 30, 25, 22, 20
 	};
 
 	private void StartIsShort(Vehicle player, bool isShort)
