@@ -26,7 +26,7 @@ public class Race
 	 *	Test case:  2015-12-20 Level 1.  TerraCottaFrog expects challenge.  Felt bored.
 	 */
 	private float[] finishZs = {
-		60.0f, 90.0f, 170.0f, 220.0f, 260.0f, 260.0f, 260.0f, 260.0f, 260.0f, 260.0f, 270.0f, 280.0f
+		60.0f, 90.0f, 170.0f, 220.0f, 240.0f, 260.0f, 260.0f, 260.0f, 260.0f, 260.0f, 270.0f, 280.0f
 	};
 
 	private int[] vehicleCounts = {

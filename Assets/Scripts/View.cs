@@ -34,6 +34,12 @@ public class View
 		}
 	}
 
+
+	/**
+	 * First start:  Hear autotracker_pu.py soundtrack loop.
+	 *	Test case:  2015-12-21 Muel suggests:
+	 *	https://www.youtube.com/watch?v=j4h5v2zat9I
+	 */
 	public void Start()
 	{
 		if (null == main) {
