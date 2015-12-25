@@ -41,6 +41,8 @@ FEATURES
 		Test case:  2015-12-20 nosfer expects faster.
 	Increase closest rank to start signaling to change lane by 4.
 		Test case:  2015-12-21 Level 10.  Muel expects moment before changing lane and passing.
+	Shorten race at level 2 to 4.
+		Test case:  2015-12-20 Level 1.  TerraCottaFrog expects challenge.  Felt bored.
 
 TODO
 	Test case:  2015-12-20 Level 7 or higher.  Crash.  Blobo expects not to crash again into next car.

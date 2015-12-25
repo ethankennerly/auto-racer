@@ -21,12 +21,16 @@ public class Race
 	public int randomPerCycleLane = -1;
 	public int levelCount;
 
+	/**
+	 * Shorten race at level 2 and 3 with fewer vehicles.
+	 *	Test case:  2015-12-20 Level 1.  TerraCottaFrog expects challenge.  Felt bored.
+	 */
 	private float[] finishZs = {
-		60.0f, 120.0f, 200.0f, 220.0f, 260.0f, 260.0f, 260.0f, 260.0f, 260.0f, 260.0f, 270.0f, 280.0f
+		60.0f, 90.0f, 170.0f, 220.0f, 260.0f, 260.0f, 260.0f, 260.0f, 260.0f, 260.0f, 270.0f, 280.0f
 	};
 
 	private int[] vehicleCounts = {
-		12, 16, 24, 40, 50, 60, 70, 80, 90, 100, 110, 120
+		12, 14, 20, 40, 50, 60, 70, 80, 90, 100, 110, 120
 	};
 
 	private float[] topSpeeds = {

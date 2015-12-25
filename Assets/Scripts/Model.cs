@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Model
 {
+	public static bool isPerfectMode = false;
+
 	public static string cardinal(int rank)
 	{
 		string place = "th";
@@ -32,7 +34,6 @@ public class Model
 	}
 
 	public bool isShort;
-	public bool isPerfectMode;
 	public bool isFinish;
 	public bool isRestart;
 	public bool isRestartNow;
