@@ -42,4 +42,48 @@ public class ToyView
 	{
 		mesh.text = text;
 	}
+
+	/**
+	 * Test case:  2015-12-20 Level 8.  Blobo expects to feel challenged.  Felt overwhelmed (+zenmumbler, +Muel).
+	 *	Tune difficulty and test in slow motion.
+	 * Also update fixed delta time but not delta time.
+	 * http://docs.unity3d.com/ScriptReference/Time-timeScale.html
+	 */
+	public static float UpdateCheatTimeScale()
+	{
+		float scale = 1.0f;
+		float factor = Mathf.Pow(2.0f, 0.5f);
+		if (Input.GetKeyDown("2"))
+		{
+			scale /= factor;
+		}
+		else if (Input.GetKeyDown("3"))
+		{
+			scale *= factor;
+		}
+		if (1.0f != scale)
+		{
+			Time.timeScale *= scale;
+			Time.fixedDeltaTime *= scale;
+			Debug.Log("ToyView.UpdateCheatTimeScale: to " + Time.timeScale);
+		}
+		return scale;
+	}
+
+	public static void UpdateCheat(Model model)
+	{
+		if (Input.GetKeyDown("page up"))
+		{
+			model.CheatLevelUp(1);
+		}
+		else if (Input.GetKeyDown("page down"))
+		{
+			model.CheatLevelUp(-1);
+		}
+		else if (Input.GetKeyDown("1"))
+		{
+			model.ToggleIsPerfectMode();
+		}
+		ToyView.UpdateCheatTimeScale();
+	}
 }

@@ -170,7 +170,14 @@ public class Model
 		IfOffRoadRestart();
 	}
 
-	public void toggleIsPerfectMode()
+	public int CheatLevelUp(int up)
+	{
+		int level = race.CheatLevelUp(up);
+		isRestartNow = true;
+		return level;
+	}
+
+	public void ToggleIsPerfectMode()
 	{
 		isPerfectMode = !isPerfectMode;
 		Debug.Log("Model.toggleIsPerfectMode: " + isPerfectMode);

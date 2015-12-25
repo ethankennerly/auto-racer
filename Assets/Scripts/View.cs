@@ -77,12 +77,12 @@ public class View
 		}
 	}
 
-	private void UpdatePositions(Transform[] transforms)
+	private void SetPositionsXZ(Vehicle[] vehicles, Transform[] transforms)
 	{
 		for (int index = 0; index < transforms.Length; index++) {
 			Transform transform = transforms[index];
-			float x = model.vehicles[index].x;
-			float z = model.vehicles[index].z;
+			float x = vehicles[index].x;
+			float z = vehicles[index].z;
 			ToyView.SetPositionXZ(transform, x, z);
 		}
 	}
@@ -91,51 +91,6 @@ public class View
 	{
 		steering.isInputLeft = Input.GetKeyDown(KeyCode.LeftArrow);
 		steering.isInputRight = Input.GetKeyDown(KeyCode.RightArrow);
-	}
-
-	/**
-	 * Test case:  2015-12-20 Level 8.  Blobo expects to feel challenged.  Felt overwhelmed (+zenmumbler, +Muel).
-	 *	Tune difficulty and test in slow motion.
-	 * Also update fixed delta time but not delta time.
-	 * http://docs.unity3d.com/ScriptReference/Time-timeScale.html
-	 */
-	private void UpdateCheatTimeScale()
-	{
-		float scale = 1.0f;
-		float factor = 2.0f;
-		if (Input.GetKeyDown("2"))
-		{
-			scale /= factor;
-		}
-		else if (Input.GetKeyDown("3"))
-		{
-			scale *= factor;
-		}
-		if (1.0f != scale)
-		{
-			Time.timeScale *= scale;
-			Time.fixedDeltaTime *= scale;
-			Debug.Log("View.UpdateCheatTimeScale: to " + Time.timeScale);
-		}
-	}
-
-	private void UpdateCheat()
-	{
-		if (Input.GetKeyDown("page up"))
-		{
-			model.race.CheatLevelUp(1);
-			model.isRestartNow = true;
-		}
-		else if (Input.GetKeyDown("page down"))
-		{
-			model.race.CheatLevelUp(-1);
-			model.isRestartNow = true;
-		}
-		else if (Input.GetKeyDown("1"))
-		{
-			model.toggleIsPerfectMode();
-		}
-		UpdateCheatTimeScale();
 	}
 
 	private void UpdateAnalytics()
@@ -169,9 +124,9 @@ public class View
 
 	public void Update(float deltaSeconds)
 	{
-		UpdateCheat();
+		ToyView.UpdateCheat(model);
 		UpdateInput(model.player.steering);
-		UpdatePositions(transforms);
+		SetPositionsXZ(model.vehicles, transforms);
 		ToyView.SetPositionXZ(camera, model.player.steering.cameraX, 
 			model.cameraZ);
 		if (model.isRestartNow)

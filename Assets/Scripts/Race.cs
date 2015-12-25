@@ -120,7 +120,7 @@ public class Race
 		return isLevelUp;
 	}
 
-	public void CheatLevelUp(int amount)
+	public int CheatLevelUp(int amount)
 	{
 		level = (level + amount) % levelCount;
 		if (level < 0)
@@ -128,5 +128,6 @@ public class Race
 			level += levelCount;
 		}
 		Debug.Log("CheatLevelUp: level index " + level);
+		return level;
 	}
 }
