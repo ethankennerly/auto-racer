@@ -45,7 +45,7 @@ public class Race
 	};
 
 	private int[] randomPerCycleLanes = {
-		-1, -1, 80, 70, 60, 50, 40, 35, 30, 25, 22, 20
+		-1, -1, 80, 70, 60, 50, 40, 35, 30, 25, 25, 25
 	};
 
 	private void StartIsShort(Vehicle player, bool isShort)
@@ -91,16 +91,22 @@ public class Race
 		}
 	}
 
+	/**
+	 * Increase closest rank to start signaling to change lane to 6.  Was 2.
+	 *	Test case:  2015-12-21 Level 10.  Muel expects moment before changing lane and passing.
+	 */
 	public void CycleLaneAhead(Vehicle[] vehicles, Vehicle player)
 	{
 		if (randomPerCycleLane <= 0) {
 			return;
 		}
 		int index = player.index;
+		int minRanksAhead = 6;
+		// 2;
 		int ahead = index 
 			- (int) (carPerCycleLane 
 			- (Random.value * randomPerCycleLane))
-			- 2;
+			- minRanksAhead;
 		if (0 <= ahead && ahead < vehicles.Length && index != ahead)
 		{
 			Vehicle vehicle = vehicles[ahead];
