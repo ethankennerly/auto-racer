@@ -46,6 +46,7 @@ FEATURES
 
 TODO
 	Test case:  2015-12-20 Level 7 or higher.  Crash.  Blobo expects not to crash again into next car.
+		If competitor is moving faster, do not crash.
 		Cars behind steer around you.
 		Upon crash blink car.
 		Upon crash do not slow so much as to get passed.  Gradually recover.
@@ -72,6 +73,7 @@ TODO
 		Letter box left and right.
 		Profile performance.
 		Green color for grass.
+	If finish behind finish line then compress.
 	After fininsh, stop turn signals.
 	Animate collision.
 	Animate first place.

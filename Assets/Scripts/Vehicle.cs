@@ -61,6 +61,10 @@ public class Vehicle
 		return isColliding;
 	}
 
+	/**
+	 * If competitor is moving faster, do not collide.
+	 * Test case:  2015-12-20 Level 7 or higher.  Crash.  Blobo expects not to crash again into next car.
+	 */
 	public bool UpdateCollision(Vehicle[] vehicles)
 	{
 		wasColliding = isColliding;
@@ -68,18 +72,27 @@ public class Vehicle
 		int ahead = index - 1;
 		int behind = index + 1;
 		int collisionIndex = -1;
+		Vehicle other;
 		if (!isColliding && 0 <= ahead)
 		{
-			isColliding = IsColliding(vehicles[ahead]);
-			if (isColliding) {
-				collisionIndex = ahead;
+			other = vehicles[ahead];
+			if (other.speed < speed)
+			{
+				isColliding = IsColliding(other);
+				if (isColliding) {
+					collisionIndex = ahead;
+				}
 			}
 		}
 		if (!isColliding && behind < vehicles.Length)
 		{
-			isColliding = IsColliding(vehicles[behind]);
-			if (isColliding) {
-				collisionIndex = behind;
+			other = vehicles[behind];
+			if (other.speed < speed)
+			{
+				isColliding = IsColliding(other);
+				if (isColliding) {
+					collisionIndex = behind;
+				}
 			}
 		}
 		isCollidingNow = !wasColliding && isColliding;
