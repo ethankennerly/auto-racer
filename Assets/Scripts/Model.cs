@@ -98,6 +98,7 @@ public class Model
 	{
 		if (!isRestart && player.steering.isOffRoad)
 		{
+			player.isCollidingNow = true;
 			isRestartNow = !isRestart;
 			isRestart = true;
 		}

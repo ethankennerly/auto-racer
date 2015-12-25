@@ -43,38 +43,42 @@ FEATURES
 		Test case:  2015-12-21 Level 10.  Muel expects moment before changing lane and passing.
 	Shorten race at level 2 to 4.
 		Test case:  2015-12-20 Level 1.  TerraCottaFrog expects challenge.  Felt bored.
-
-TODO
 	Test case:  2015-12-20 Level 7 or higher.  Crash.  Blobo expects not to crash again into next car.
 		If competitor is moving faster, do not crash.
-		Cars behind steer around you.
-		Upon crash blink car.
-		Upon crash do not slow so much as to get passed.  Gradually recover.
-	Test case:  2015-12-23 Web GL.  At high speed yet low frame rate, intersect a car.  I expect a collision.  Got sometimes pass through.
-		Continuous collision test.
 	Test case:  2015-12-15 LittleThor expects sound. (+rnlf, +Crazi456, +nosfer)
-		Generate sound effects
-		Generate soundtrack.  
-			Test case:  2015-12-21 Muel suggests:
-			https://www.youtube.com/watch?v=j4h5v2zat9I
+		Hear lane change.
+			http://sfbgames.com/chiptone
+		Hear pass.
 		Pass rise in pitch with speed.
-		Pass musical note.
-		Crash musical note.
+
+TODO
 	Test case:  2015-12-16 TheMeorch expects to restart level (+TerraCottaFrog, +loxo, +rplnt).
-		Steer off-road: restart.
 		Animate went off road and is restarting.
 		Record restart count.
 		Pass level coming in first with 1 collision, analogous to Train of Thought.
 	Test case:  2015-12-20 TerraCottaFrog expects no wavy water.  2015-12-20 Near finish.  loxo expects no message on side of screen.
 		More distance between road, grass.
+		Mark sign invisible before animating in and after end.
 		Close gap between squares in finish.
 		Texture for finish.
-		Mark sign invisible before animating in and after end.
 		Letter box left and right.
 		Profile performance.
 		Green color for grass.
+	Test case:  2015-12-23 Web GL.  At high speed yet low frame rate, intersect a car.  I expect a collision.  Got sometimes pass through.
+		Continuous collision test.
 	If finish behind finish line then compress.
+	Test case:  2015-12-20 Level 7 or higher.  Crash.  Blobo expects not to crash again into next car.
+		Cars behind steer around you.
+		Upon crash blink car.
+		Upon crash do not slow so much as to get passed.  Gradually recover.
 	After fininsh, stop turn signals.
+	Test case:  2015-12-15 LittleThor expects sound. (+rnlf, +Crazi456, +nosfer)
+		Hear generated soundtrack.  
+			Test case:  2015-12-21 Muel suggests:
+			https://www.youtube.com/watch?v=j4h5v2zat9I
+		Hear finish finale.
+		Pass musical note.
+		Crash musical note.
 	Animate collision.
 	Animate first place.
 	Collide.  Hear a sound.  Pass.  Hear a sound.

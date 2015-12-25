@@ -16,6 +16,7 @@ public class Vehicle
 	public float collisionSpeedMultiplier = 0.05f;
 						// 0.0f;
 	public bool isColliding;
+	public bool isRankUpNow;
 	public int collisionCount = 0;
 	public bool isCollidingNow;
 	private bool wasColliding;
@@ -47,9 +48,19 @@ public class Vehicle
 				vehicles[index] = other;
 			}
 		}
-		bool isChanging = index != next;
+		bool isRankChangingNow = index != next;
+		isRankUpNow = next < index;
 		index = next;
-		return isChanging;
+		return isRankChangingNow;
+	}
+
+	public float SpeedFactor()
+	{
+		float speedBase = 2.0f;
+		// 5.0f;
+		float power = 0.25f;
+		// 0.5f;
+		return Mathf.Max(0.5f, Mathf.Pow(speed / speedBase, power));
 	}
 
 	public bool IsColliding(Vehicle other)

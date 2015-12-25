@@ -75,6 +75,7 @@ public class View
 			}
 			transforms[index] = transform;
 		}
+		audio.pitch = model.player.SpeedFactor();
 	}
 
 	private void SetPositionsXZ(Vehicle[] vehicles, Transform[] transforms)
@@ -114,11 +115,28 @@ public class View
 		}
 	}
 
+	/**
+	 * Hear lane change.  Hear pass.  Pass rise in pitch with speed.  http://sfbgames.com/chiptone 
+	 *	Test case:  2015-12-15 LittleThor expects sound. (+rnlf, +Crazi456, +nosfer)
+	 */
 	private void UpdateSounds()
 	{
 		if (model.player.isCollidingNow)
 		{
 			audio.PlayOneShot(sounds.collisionSound);
+		}
+		if (model.player.steering.isInputLeft)
+		{
+			audio.PlayOneShot(sounds.steerLeftSound);
+		}
+		if (model.player.steering.isInputRight)
+		{
+			audio.PlayOneShot(sounds.steerRightSound);
+		}
+		if (model.player.isRankUpNow)
+		{
+			audio.pitch = model.player.SpeedFactor();
+			audio.PlayOneShot(sounds.passSound);
 		}
 	}
 
