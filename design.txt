@@ -52,6 +52,7 @@ FEATURES
 		https://www.youtube.com/watch?v=j4h5v2zat9I
 
 TODO
+	At start, Rnlf accelerates faster.  Test case:  2015-12-20 Rnlf expects to accelerate quickly.
 	Test case:  2015-12-16 TheMeorch expects to restart level (+TerraCottaFrog, +loxo, +rplnt).
 		Animate went off road and is restarting.
 		Record restart count.
@@ -76,12 +77,12 @@ TODO
 		Hear finish finale.
 		Pass musical note.
 		Crash musical note.
+	Cars that put on the brakes and brake lights signal.
+		Schedule intercept to ensure room.
+		Some cars that had put on the brakes and are slower.  
+		Other cars go around.
 	Animate collision.
 	Animate first place.
-	Collide.  Hear a sound.  Pass.  Hear a sound.
-	Upload to finegamedesign.com/auto-racer
-	Submit to Ludum Dare.
-	Sunday at 6, Jennifer finishes three races, in 1st, and 2nd to 5th place.
 	Finish near 1st if make only one mistake.
 	Smooth transition.
 	Experiment with two lanes.
