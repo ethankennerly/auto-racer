@@ -23,7 +23,6 @@ public class MainView : MonoBehaviour
 		controller.view.InstantiatePrefab = InstantiatePrefab;
 		controller.view.sounds = this;
 		controller.Start();
-		isMusicBox = controller.view.isMusicBox;
 	}
 
 	/**

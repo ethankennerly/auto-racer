@@ -21,6 +21,9 @@ public class Vehicle
 	public bool isCollidingNow;
 	private bool wasColliding;
 	private Vehicle passee;
+	private float now = 0.0f;
+	private float rankUpInterval = 0.0f;
+	private float rankUpPreviously = 0.0f;
 
 	public bool IsUpdateRank(Vehicle[] vehicles)
 	{
@@ -54,6 +57,12 @@ public class Vehicle
 		steering.passes(passee);
 		bool isRankChangingNow = index != next;
 		isRankUpNow = next < index;
+		if (isRankUpNow)
+		{
+			rankUpInterval = now - rankUpPreviously;
+			rankUpPreviously = now;
+			Debug.Log("Vehicle.IsUpdateRank: " + rankUpInterval);
+		}
 		index = next;
 		return isRankChangingNow;
 	}
@@ -141,6 +150,7 @@ public class Vehicle
 
 	public void Update(float deltaSeconds)
 	{
+		now += deltaSeconds;
 		x = steering.Update(deltaSeconds);
 		if (steering.isFinished)
 		{

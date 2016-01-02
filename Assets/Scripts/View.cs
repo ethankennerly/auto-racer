@@ -62,7 +62,6 @@ public class View
 			loop = GameObject.Find("SoundLoop").GetComponent<AudioSource>();
 			GameObject musicBoxObject = GameObject.Find("MusicBox");
 			musicBox = musicBoxObject.GetComponent<AudioSource>();
-			SetMusicBox(musicBoxObject.activeSelf);
 		}
 		competitors = new GameObject[model.race.competitorCount];
 		int vehicleCount = model.race.vehicleCount;
@@ -142,8 +141,8 @@ public class View
 		{
 			if (isMusicBox)
 			{
-				var index = model.player.steering.toNextLaneIndex();
-				musicBox.PlayOneShot(sounds.melodies[index]);
+				// int index = model.player.steering.toNextLaneIndex();
+				// musicBox.PlayOneShot(sounds.melodies[index]);
 			}
 			else
 			{
@@ -154,8 +153,8 @@ public class View
 		{
 			if (isMusicBox)
 			{
-				var index = model.player.steering.toNextLaneIndex();
-				musicBox.PlayOneShot(sounds.melodies[index]);
+				// int index = model.player.steering.toNextLaneIndex();
+				// musicBox.PlayOneShot(sounds.melodies[index]);
 			}
 			else
 			{
@@ -174,10 +173,12 @@ public class View
 						int length = indexes.Length;
 						if (1 <= length)
 						{
+							int pitchIndex = model.player.steering.toNextLaneIndex();
+							musicBox.PlayOneShot(sounds.melodies[pitchIndex]);
 							for (int index = 0; index < indexes.Length; index++)
 							{
 								int melodyIndex = indexes[index];
-								Debug.Log("View.UpdateSonds: melody " + melodyIndex);
+								// Debug.Log("View.UpdateSonds: melody " + melodyIndex);
 								musicBox.PlayOneShot(sounds.basses[melodyIndex]);
 							}
 						}

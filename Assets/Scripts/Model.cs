@@ -161,7 +161,8 @@ public class Model
 			}
 			vehicle.Update(deltaSeconds);
 		}
-		if (player.IsUpdateRank(ranks)) {
+		if (player.IsUpdateRank(ranks)) 
+		{
 			race.CycleLaneAhead(vehicles, player);
 		}
 		if (!isPerfectMode)
