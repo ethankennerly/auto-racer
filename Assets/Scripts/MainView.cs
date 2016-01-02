@@ -3,12 +3,17 @@ using UnityEngine;
 public class MainView : MonoBehaviour
 {
 	public bool isShort = false;
+	public bool isMusicBox = false;
 	public float steeringSpeed;
 	public AudioClip collisionSound;
 	public AudioClip musicSound;
 	public AudioClip passSound;
 	public AudioClip steerLeftSound;
 	public AudioClip steerRightSound;
+
+	// Musical Notes
+	public AudioClip[] melodies = new AudioClip[3];
+	public AudioClip[] basses = new AudioClip[3];
 
 	private Controller controller = new Controller();
 	
@@ -18,6 +23,7 @@ public class MainView : MonoBehaviour
 		controller.view.InstantiatePrefab = InstantiatePrefab;
 		controller.view.sounds = this;
 		controller.Start();
+		isMusicBox = controller.view.isMusicBox;
 	}
 
 	/**
@@ -34,6 +40,7 @@ public class MainView : MonoBehaviour
 
 	private void Update()
 	{
+		controller.view.SetMusicBox(isMusicBox);
 		controller.Update(Time.deltaTime);
 		steeringSpeed = controller.model.player.steering.speed;
 	}

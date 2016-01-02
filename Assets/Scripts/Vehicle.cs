@@ -20,12 +20,14 @@ public class Vehicle
 	public int collisionCount = 0;
 	public bool isCollidingNow;
 	private bool wasColliding;
+	private Vehicle passee;
 
 	public bool IsUpdateRank(Vehicle[] vehicles)
 	{
 		Vehicle other;
 		int place;
 		int next = index;
+		SteeringModel passee = null;
 		if (1 <= index)
 		{
 			place = index - 1;
@@ -35,6 +37,7 @@ public class Vehicle
 				next = place;
 				vehicles[next] = this;
 				vehicles[index] = other;
+				passee = other.steering;
 			}
 		}
 		if (next == index && index < vehicles.Length - 1)
@@ -48,6 +51,7 @@ public class Vehicle
 				vehicles[index] = other;
 			}
 		}
+		steering.passes(passee);
 		bool isRankChangingNow = index != next;
 		isRankUpNow = next < index;
 		index = next;

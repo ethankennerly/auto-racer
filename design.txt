@@ -52,6 +52,20 @@ FEATURES
 		https://www.youtube.com/watch?v=j4h5v2zat9I
 
 TODO
+	Test case:  2015-12-27 Jade Brewer hears chord progression:
+		Export major chord CEG from MuseScore.
+			Horn
+			Timpani
+			http://learndoremi.yolasite.com/music-notes.php
+			http://endofthegame.net/2011/08/16/chordprogressions/
+		The note of the chord depends on the lane of the other car and the player.
+		Left and right play a note in the chord.
+		Major chord synced to pass.
+		Bass plays first note in chord synced to pass.
+		Drum plays rhythm synced to pass.
+		Chord progression each sequences of passes:  [8, 4].
+		Turn signal plays maraca.
+	Test case:  2015-12-27 Level 8.  Jade Brewer expects to collide less frequently.
 	At start, Rnlf accelerates faster.  Test case:  2015-12-20 Rnlf expects to accelerate quickly.
 	Test case:  2015-12-16 TheMeorch expects to restart level (+TerraCottaFrog, +loxo, +rplnt).
 		Animate went off road and is restarting.

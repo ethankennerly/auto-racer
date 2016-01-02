@@ -11,6 +11,7 @@ public class View
 	public delegate GameObject InstantiatePrefabDelegate(GameObject prefab, 
 		Vector3 position);
 	public InstantiatePrefabDelegate InstantiatePrefab;
+	public bool isMusicBox;
 	private Transform[] transforms;
 	private Transform player;
 	private Transform camera;
@@ -18,6 +19,7 @@ public class View
 	private GameObject competitorPrefab;
 	private GameObject roadPrefab;
 	private AudioSource audio;
+	private AudioSource musicBox;
 	private AudioSource loop;
 	public MainView sounds;
 
@@ -58,7 +60,9 @@ public class View
 			audio = main.gameObject.GetComponent<AudioSource>();
 			audio.pitch = model.player.SpeedFactor();
 			loop = GameObject.Find("SoundLoop").GetComponent<AudioSource>();
-			loop.Play();
+			GameObject musicBoxObject = GameObject.Find("MusicBox");
+			musicBox = musicBoxObject.GetComponent<AudioSource>();
+			SetMusicBox(musicBoxObject.activeSelf);
 		}
 		competitors = new GameObject[model.race.competitorCount];
 		int vehicleCount = model.race.vehicleCount;
@@ -144,9 +148,51 @@ public class View
 		}
 		if (model.player.isRankUpNow)
 		{
-			audio.pitch = model.player.SpeedFactor();
-			audio.PlayOneShot(sounds.passSound);
+			if (isMusicBox)
+			{
+				musicBox.PlayOneShot(sounds.basses[0]);
+			}
+			else
+			{
+				audio.pitch = model.player.SpeedFactor();
+				audio.PlayOneShot(sounds.passSound);
+			}
 		}
+		bool isPassMusicBix = false;
+		if (isPassMusicBox && isMusicBox)
+		{
+			int[] indexes = model.player.steering.passingLaneIndexes;
+			if (null != indexes)
+			{
+				int length = indexes.Length;
+				if (1 <= length)
+				{
+					// audio.PlayOneShot(sounds.basses[0]);
+					for (int index = 0; index < indexes.Length; index++)
+					{
+						musicBox.PlayOneShot(sounds.melodies[index]);
+					}
+				}
+			}
+		}
+	}
+
+	public bool SetMusicBox(bool isMusicBoxNext)
+	{
+		bool isChanging = isMusicBox != isMusicBoxNext;
+		if (isChanging)
+		{
+			isMusicBox = isMusicBoxNext;
+			if (isMusicBox)
+			{
+				loop.Stop();
+			}
+			else
+			{
+				loop.Play();
+			}
+		}
+		return isChanging;
 	}
 
 	public void Update(float deltaSeconds)

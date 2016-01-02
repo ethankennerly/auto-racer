@@ -18,6 +18,7 @@ public class SteeringModel
 	public bool isOffRoad = false;
 	public bool isSignaling = false;
 	public bool isVerbose = false;
+	public int[] passingLaneIndexes = new int[]{};
 	private bool wasInputLeft = false;
 	private bool wasInputRight = false;
 	public float speedBase = 5.0f;
@@ -161,5 +162,22 @@ public class SteeringModel
 				state = "None";
 			}
 		}
+	}
+
+	public int toLane()
+	{
+		return (int) Mathf.Round(x);
+	}
+
+	public int[] passes(SteeringModel passee)
+	{
+		if (null == passee)
+		{
+			return new int[]{};
+		}
+		int self = toLane() - (int) laneLeftOffRoad;
+		int other = passee.toLane() - (int) laneLeftOffRoad;
+		passingLaneIndexes = new int[]{self, other};
+		return passingLaneIndexes;
 	}
 }
