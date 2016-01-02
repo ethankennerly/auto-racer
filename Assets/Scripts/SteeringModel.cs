@@ -169,14 +169,22 @@ public class SteeringModel
 		return (int) Mathf.Round(x);
 	}
 
+	public int toNextLaneIndex()
+	{
+		int change = isInputLeft ? -1 : isInputRight ? 1 : 0;
+		int next = toLane() + change;
+		next = (int) Mathf.Max(laneLeftOnRoad, Mathf.Min(laneRightOnRoad, next));
+		return (1 + (int) laneRightOnRoad) - next + (int) laneLeftOnRoad;
+	}
+
 	public int[] passes(SteeringModel passee)
 	{
 		if (null == passee)
 		{
 			return new int[]{};
 		}
-		int self = toLane() - (int) laneLeftOffRoad;
-		int other = passee.toLane() - (int) laneLeftOffRoad;
+		int self = (1 + (int) laneRightOnRoad) - toLane() + (int) laneLeftOnRoad;
+		int other = (1 + (int) laneRightOnRoad) - passee.toLane() + (int) laneLeftOnRoad;
 		passingLaneIndexes = new int[]{self, other};
 		return passingLaneIndexes;
 	}

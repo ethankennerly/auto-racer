@@ -140,39 +140,54 @@ public class View
 		}
 		if (model.player.steering.isInputLeft)
 		{
-			audio.PlayOneShot(sounds.steerLeftSound);
+			if (isMusicBox)
+			{
+				var index = model.player.steering.toNextLaneIndex();
+				musicBox.PlayOneShot(sounds.melodies[index]);
+			}
+			else
+			{
+				audio.PlayOneShot(sounds.steerLeftSound);
+			}
 		}
 		if (model.player.steering.isInputRight)
 		{
-			audio.PlayOneShot(sounds.steerRightSound);
+			if (isMusicBox)
+			{
+				var index = model.player.steering.toNextLaneIndex();
+				musicBox.PlayOneShot(sounds.melodies[index]);
+			}
+			else
+			{
+				audio.PlayOneShot(sounds.steerRightSound);
+			}
 		}
 		if (model.player.isRankUpNow)
 		{
 			if (isMusicBox)
 			{
-				musicBox.PlayOneShot(sounds.basses[0]);
+				if (isMusicBox)
+				{
+					int[] indexes = model.player.steering.passingLaneIndexes;
+					if (null != indexes)
+					{
+						int length = indexes.Length;
+						if (1 <= length)
+						{
+							for (int index = 0; index < indexes.Length; index++)
+							{
+								int melodyIndex = indexes[index];
+								Debug.Log("View.UpdateSonds: melody " + melodyIndex);
+								musicBox.PlayOneShot(sounds.basses[melodyIndex]);
+							}
+						}
+					}
+				}
 			}
 			else
 			{
 				audio.pitch = model.player.SpeedFactor();
 				audio.PlayOneShot(sounds.passSound);
-			}
-		}
-		bool isPassMusicBix = false;
-		if (isPassMusicBox && isMusicBox)
-		{
-			int[] indexes = model.player.steering.passingLaneIndexes;
-			if (null != indexes)
-			{
-				int length = indexes.Length;
-				if (1 <= length)
-				{
-					// audio.PlayOneShot(sounds.basses[0]);
-					for (int index = 0; index < indexes.Length; index++)
-					{
-						musicBox.PlayOneShot(sounds.melodies[index]);
-					}
-				}
 			}
 		}
 	}
@@ -183,6 +198,7 @@ public class View
 		if (isChanging)
 		{
 			isMusicBox = isMusicBoxNext;
+			sounds.isMusicBox = isMusicBoxNext;
 			if (isMusicBox)
 			{
 				loop.Stop();
@@ -198,6 +214,10 @@ public class View
 	public void Update(float deltaSeconds)
 	{
 		ToyView.UpdateCheat(model);
+		if (Input.GetKeyDown("0"))
+		{
+			SetMusicBox(!isMusicBox);
+		}
 		UpdateInput(model.player.steering);
 		SetPositionsXZ(model.vehicles, transforms);
 		ToyView.SetPositionXZ(camera, model.player.steering.cameraX, 
