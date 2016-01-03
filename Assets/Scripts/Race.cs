@@ -31,11 +31,13 @@ public class Race
 	};
 
 	private int[] vehicleCounts = {
-		12, 14, 20, 40, 50, 60, 70, 80, 90, 100, 110, 120
+		12, 14, 20, 40, 50, 60, 
+		70, 80, 90, 100, 110, 120
 	};
 
 	private float[] topSpeeds = {
-		60.0f, 70.0f, 80.0f, 90.0f, 100.0f, 110.0f, 120.0f, 130.0f, 140.0f, 150.0f, 160.0f, 180.0f
+		60.0f, 70.0f, 80.0f, 90.0f, 100.0f, 110.0f, 
+		120.0f, 130.0f, 140.0f, 150.0f, 160.0f, 180.0f
 	};
 
 	/**
@@ -46,11 +48,13 @@ public class Race
 	 * 	Test case:  2015-12-20 nosfer expects faster.
 	 */
 	private int[] carPerCycleLanes = {
-		-1, 20, 10, 10, 9, 9, 8, 8, 7, 7, 6, 6
+		-1, 20, 10, 10, 9, 9, 
+		8, 8, 7, 7, 6, 6
 	};
 
 	private int[] randomPerCycleLanes = {
-		-1, -1, 80, 70, 60, 50, 40, 35, 30, 25, 25, 25
+		-1, -1, 80, 70, 60, 50, 
+		40, 38, 35, 33, 30, 25
 	};
 
 	private void StartIsShort(Vehicle player, bool isShort)
