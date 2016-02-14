@@ -1,5 +1,12 @@
 using UnityEngine;
 
+/**
+ * Sharing code between projects:
+ * Git repo or submodule.
+ * Symlink on mac.
+ * Copy code.
+ * http://www.rivellomultimediaconsulting.com/symlinks-for-unity-game-development/
+ */
 public class ToyView
 {
 	/**
@@ -13,12 +20,12 @@ public class ToyView
 	 * In editor, deleted and recreated animator state transition.  Test case:  2015-11-15 Got error "Transition '' in state 'selcted' uses parameter 'none' which is not compatible with condition type"
 	 * http://answers.unity3d.com/questions/1070010/transition-x-in-state-y-uses-parameter-z-which-is.html
 	 */
-	public static void setState(GameObject gameObject, string state, bool isRestart = true)
+	public static void SetState(GameObject gameObject, string state, bool isRestart = true)
 	{
 		Animator animator = gameObject.GetComponent<Animator>();
 		if (null != animator && animator.isInitialized)
 		{
-			// Debug.Log("Toolkit.setState: " + gameObject + ": " + state);
+			// Debug.Log("ToyView.SetState: " + gameObject + ": " + state);
 			if (isRestart)
 			{
 				animator.Play(state);
@@ -38,7 +45,7 @@ public class ToyView
 		transform.position = position;
 	}
 
-	public static void setText(TextMesh mesh, string text)
+	public static void SetText(TextMesh mesh, string text)
 	{
 		mesh.text = text;
 	}

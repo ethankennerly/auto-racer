@@ -37,6 +37,10 @@ public class SteeringModel
 	private float cycleDelay = 2.0f;
 	private float cycleSignal = 1.0f;
 	private float cycleWaited = 0.0f;
+	public string[] buttons = new string[]{
+		"left_button",
+		"right_button"
+	};
 
 	public void Start(float lane) 
 	{
@@ -95,6 +99,26 @@ public class SteeringModel
 		wasInputLeft = isInputLeft;
 		wasInputRight = isInputRight;
 		return x;
+	}
+
+	/**
+	 * Listens between frames to detect input left or right.
+	 * Expects input variables are reset each frame.
+	 * @param	name	Expects "left_button" or "right_button"
+	 */
+	public void OnMouseDown(string name)
+	{
+		if (buttons[0] == name) {
+			isInputLeft = true;
+		}
+		else if (buttons[1] == name) {
+			isInputRight = true;
+		}
+		else {
+			Toolkit.Log("SteeringModel.OnMouseDown: Expected " 
+				+ buttons[0] + " or " + buttons[1] + "."
+				+ " Got: " + name);
+		}
 	}
 
 	/**
